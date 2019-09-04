@@ -1,0 +1,112 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+/*a {*/
+  /*color: #00B7FF;*/
+/*}*/
+
+.nav{
+  background: none;
+}
+.navbar-inverse .navbar-brand {
+    line-height: 50px;
+    vertical-align: middle;
+  color: #0f0f0f;
+}
+.navbar-brand img,.navbar-brand span{
+    float: left;
+    vertical-align: bottom;
+}
+.navbar-brand .brand-logo img{
+    height: 40px;
+    width: 45px;
+}
+.navbar-inverse .navbar-brand a{
+    float: left;
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
+}
+.navbar-inverse .navbar-brand a:hover,
+.navbar-inverse .navbar-brand a:focus {
+  color: gray;
+    cursor: pointer;
+    text-decoration: none;
+  /*background-color: transparent;*/
+}
+
+@media (min-width: 768px) {
+    .navbar-nav {
+        float: left;
+        margin: 0;
+    }
+    .navbar-nav > li {
+        float: left;
+        margin-right: 15px;
+        }
+}
+@media (max-width: 767px) {
+    .navbar-nav > li{
+        margin-bottom: 20px;
+        /*position: absolute;*/
+        text-align: center;
+    }
+    .navbar-nav >li>a{
+        /*width: 50%;*/
+        width:auto; display:inline-block !important; display:inline;
+        margin: 0 auto;
+    }
+}
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus,
+.navbar-inverse .navbar-nav > li > a,
+.navbar-inverse .navbar-nav > .active > a:focus
+{
+    color: black;
+    background: none;
+}
+.navbar-inverse .navbar-nav > li > a:hover::after,.navbar-inverse .navbar-nav > .active > a::after{
+    color: black;
+    background-image: linear-gradient(-270deg, #90F1E9 0%, #75ced5 100%);
+    width: 100%;
+}
+.navbar-inverse .navbar-nav > li > a::after ,.navbar-inverse .navbar-nav > li > a.active::after{
+    /* margin-top:  .11rem; */
+    content: "";
+    display: block;
+    width: 50%;
+    height: 4px;
+    border-radius: 100px;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    transition: width 0.5s;
+    -webkit-transition: width 0.5s;
+    -o-transition: width 0.5s;
+}
+
+
+.navbar-inverse .navbar-toggle {
+  border-color: darkgrey;
+}
+.navbar-inverse .navbar-toggle:hover,
+.navbar-inverse .navbar-toggle:focus {
+  background-color: white;
+}
+.navbar-inverse .navbar-toggle .icon-bar {
+  background-color: lightgray;
+}
+.navbar-inverse .navbar-collapse,
+.navbar-inverse .navbar-form {
+    border-color: lightgray;
+}
+
+#p1{
+    background:url(../images/sky2.jpg) no-repeat;
+    background-size: 100% 100%;
+}

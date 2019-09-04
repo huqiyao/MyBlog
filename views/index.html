@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>首页</title>
+    <link href="../public/modules/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../public/stylesheets/index.css">
+    <link rel="stylesheet" href="../public/stylesheets/global.css">
+    <link rel="stylesheet" href="../public/modules/jquery.fullPage.css">
+
+</head>
+<body>
+<nav class="nav navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <!--移动端折叠选项的按钮-->
+            <button class="navbar-toggle" data-toggle="collapse" data-target="#menu">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="navbar-brand">
+                <div>
+                    <a class="brand-logo"><img src="../public/images/logo.png"></a>
+                    <a class="brand-name" data-toggle="modal" data-target="#myLogin">QiYao's Blog</a></div>
+            </div>
+        </div>
+        <div id="menu" class="collapse navbar-collapse navbar-right">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">我的首页</a></li>
+                <li><a href="#">技术博客</a></li>
+                <li><a href="#">作品展示</a></li>
+                <li><a href="#">资源下载</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">登陆</h4>
+            </div>
+            <div class="modal-body">在这里添加一些文本</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary">登陆</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<div id="fullPage" class="fullpage-wrapper">
+    <div id="p1" class="section active " style="background-color: #E8EAED"></div>
+    <div class="section" style="background-color: #3c763d">page_2</div>
+    <div class="section" style="background-color: pink">page_3</div>
+    <div class="section" style="background-color: yellow">page_4</div>
+</div>
+
+<script src="../public/modules/jquery-3.3.1.min.js"></script>
+<script src="../public/modules/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="../public/modules/jquery.fullPage.js"></script>
+<script src="../public/javascripts/index.js"></script>
+</body>
+</html>
