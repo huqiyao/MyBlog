@@ -110,3 +110,15 @@ body {
     background:url(../images/sky2.jpg) no-repeat;
     background-size: 100% 100%;
 }
+
+
+/*模态框样式*/
+.login-box{
+    border-top: 7px solid #337AB7;
+}
+
+
+/*按钮样式*/
+.btn{
+    padding: 6px 10px;
+}
