@@ -1,6 +1,16 @@
-extends layout
-
-block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>出错啦</title>
+    <link rel="stylesheet" href="../public/stylesheets/global.css">
+    <link rel="stylesheet" href="../public/stylesheets/error.css">
+</head>
+<body>
+<div class='tri-test'></div>
+    <div class="error-content">
+        <img src="../public/images/whiteLogo.png">
+        <h1>所访问资源不存在</h1>
+    </div>
+</body>
+</html>

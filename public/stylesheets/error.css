@@ -1,0 +1,82 @@
+body{
+    background-color: black;
+    background-size: 100% 100%;
+}
+
+.error-content{
+    text-align: center;
+    margin: 0 auto;
+    width: 40%;
+    height: 30%;
+    position: absolute;
+    left: 30%;
+    top: 0;
+    padding-top: 15%;
+    padding-bottom: 10%;
+}
+
+img{
+    /*position: absolute;*/
+    top: 20%;
+}
+
+h1{
+    /*position: absolute;*/
+    /*top: 50%;*/
+    color: white;
+}
+
+
+/*div:before { content: "";*/
+    /*position: absolute;*/
+    /*width:200px;*/
+    /*height: 100%;*/
+    /*top: 0;*/
+    /*left: 0px;*/
+    /*overflow: hidden;*/
+    /*background: -moz-linear-gradient(left, rgba(255,255,255,0)0, rgba(255,255,255,.2)50%, rgba(255,255,255,0)100%);*/
+    /*background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255,255,255,0)), color-stop(50%, rgba(255,255,255,.2)), color-stop(100%, rgba(255,255,255,0)));*/
+    /*background: -webkit-linear-gradient(left, rgba(255,255,255,0)0, rgba(255,255,255,.2)50%, rgba(255,255,255,0)100%);*/
+    /*background: -o-linear-gradient(left, rgba(255,255,255,0)0, rgba(255,255,255,.2)50%, rgba(255,255,255,0)100%);*/
+    /*-webkit-transform: skewX(-25deg);*/
+    /*-moz-transform: skewX(-25deg);*/
+    /*width: 100px;*/
+    /*height: 100px;*/
+    /*margin: 10px auto;*/
+    /*border: 50px solid;*/
+    /*!*边框颜色：上 右 下 左 （从上边框开始 顺时针方向）*!*/
+    /*border-color: transparent transparent #402820 transparent;*/
+    /*!*为了兼容IE6，所有设置为透明（transparent）的边，需要设置为dashed；有颜色的边设置为solid*!*/
+    /*border-style: dashed dashed solid dashed;*/
+/*}*/
+/*div:hover:before { left: 100%; transition: left 1s ease 0s; }*/
+
+/*.tri-test {*/
+    /*!*opacity: 0.4;*!*/
+    /*position: relative;*/
+    /*overflow: hidden;*/
+/*background: -moz-linear-gradient(left, rgba(255,255,255,0)0, rgba(255,255,255,.2)50%, rgba(255,255,255,0)100%);*/
+/*background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255,255,255,0)), color-stop(50%, rgba(255,255,255,.2)), color-stop(100%, rgba(255,255,255,0)));*/
+/*background: -webkit-linear-gradient(left, rgba(255,255,255,0)0, rgba(255,255,255,.2)50%, rgba(255,255,255,0)100%);*/
+/*background: -o-linear-gradient(left, rgba(255,255,255,0)0, rgba(255,255,255,.2)50%, rgba(255,255,255,0)100%);*/
+/*width: 140px;*/
+/*height: 300px;*/
+/*margin: -10px auto;*/
+/*}*/
+/*.tri-test:before,*/
+/*.tri-test:after {*/
+/*position: absolute;*/
+/*content: '';*/
+/*}*/
+/*.tri-test:before,*/
+/*.tri-test:after {*/
+/*border-left: 70px solid transparent;*/
+/*border-right: 70px solid transparent;*/
+/*border-top: 300px solid black;*/
+/*}*/
+/*.tri-test:before {*/
+/*margin-left: -70px;*/
+/*}*/
+/*.tri-test:after {*/
+/*margin-left: 70px;*/
+/*}*/
