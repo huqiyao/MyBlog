@@ -1,8 +1,3 @@
-#p1{
-    background:url(../images/sky2.jpg) no-repeat;
-    background-size: 100% 100%;
-}
-
 
 /*模态框样式*/
 .login-box{
@@ -14,3 +9,122 @@
 .btn{
     padding: 6px 10px;
 }
+
+.container{
+    margin-top: 10px;
+}
+
+
+
+.fp-tableCell{
+    display: flex !important;
+    flex-direction: column;
+    align-items: center; /*子元素垂直居中*/
+    justify-content: center;
+}
+/*tags*/
+.tags{
+    /*margin: 0 auto;*/
+    list-style: none;
+    padding: 0;
+    width: 53%;
+    text-align: center;
+    /*position: relative;*/
+    /*top: 40%;*/
+    border: 1px solid black;
+}
+.tag{
+    color: #737373;
+    background: #cccccc;
+    -moz-box-shadow: 0 4px 0 0 #b3b3b3, 4px 4px 0 0 #b3b3b3;
+    -webkit-box-shadow: 0 4px 0 0 #b3b3b3, 4px 4px 0 0 #b3b3b3;
+    box-shadow: 0 4px 0 0 #b3b3b3, 4px 4px 0 0 #b3b3b3;
+    display: inline-block;
+    font: normal normal normal 14px/12px 'Open Sans', sans-serif;
+    height: 30px;
+    margin: 2rem 2rem 1rem 0;
+    padding: 1rem 2.8rem 1rem 2rem;
+    position: relative;
+    top: 0;
+    content: "";
+    cursor: pointer;
+    text-align: center;
+    text-transform: lowercase;
+    border: 0 solid transparent;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    /*round*/
+    -moz-border-radius: 4px 1px 1px 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px 1px 1px 4px;
+}
+.tag:before {
+    color: rgba(255, 255, 255, 0.9);
+    background: #cccccc;
+    -moz-box-shadow: 0 4px 0 0 #b3b3b3;
+    -webkit-box-shadow: 0 4px 0 0 #b3b3b3;
+    box-shadow: 0 4px 0 0 #b3b3b3;
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    top: 4px;
+    right: -12px;
+    z-index: 1;
+    content: "";
+    cursor: pointer;
+    -moz-transform: rotateY(1deg) rotateZ(-45deg) scaleX(1) scaleY(1) scaleZ(1);
+    -ms-transform: rotateY(1deg) rotateZ(-45deg) scaleX(1) scaleY(1) scaleZ(1);
+    -o-transform: rotateY(1deg) rotateZ(-45deg) scaleX(1) scaleY(1) scaleZ(1);
+    -webkit-transform: rotateY(1deg) rotateZ(-45deg) scaleX(1) scaleY(1) scaleZ(1);
+    transform: rotateY(1deg) rotateZ(-45deg) scaleX(1) scaleY(1) scaleZ(1);
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    /*round*/
+    -moz-border-radius: 1px 1px 4px;
+    -webkit-border-radius: 1px;
+    border-radius: 1px 1px 4px;
+}
+.tag:after {
+    display: inline-block;
+    background: #FFF;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -moz-box-shadow: 3px 3px 0 0 #b3b3b3 inset;
+    -webkit-box-shadow: 3px 3px 0 0 #b3b3b3 inset;
+    box-shadow: 3px 3px 0 0 #b3b3b3 inset;
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    top: 12px;
+    right: 0;
+    z-index: 2;
+    content: "";
+    cursor: pointer;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.tag span {
+    position: relative;
+    z-index: 2;
+}
+
+/* Rounded Tag */
+/*.tag-round {*/
+    /*-moz-border-radius: 4px 1px 1px 4px;*/
+    /*-webkit-border-radius: 4px;*/
+    /*border-radius: 4px 1px 1px 4px;*/
+/*}*/
+/*.tag-first:before {*/
+    /*-moz-border-radius: 1px 1px 4px;*/
+    /*-webkit-border-radius: 1px;*/
+    /*border-radius: 1px 1px 4px;*/
+/*}*/

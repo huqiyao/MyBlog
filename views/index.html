@@ -37,7 +37,8 @@
     </div>
 </nav>
 <!-- 模态框（Modal） -->
-<div class="modal fade text-center" id="myLogin" tabindex="-1" role="dialog" aria-labelledby="myLoginLabel" aria-hidden="true">
+<div class="modal fade text-center" id="myLogin" tabindex="-1" role="dialog" aria-labelledby="myLoginLabel"
+     aria-hidden="true">
     <div class="modal-dialog" style="display: inline-block;width: auto;">
         <div class="modal-content login-box">
             <div class="modal-header">
@@ -55,7 +56,8 @@
                     <div class="form-group">
                         <label for="password" class="col-sm-3 control-label">密码</label>
                         <div class="col-sm-9">
-                            <input type="password" class="form-control" id="password" placeholder="请输入密码" name="password">
+                            <input type="password" class="form-control" id="password" placeholder="请输入密码"
+                                   name="password">
                         </div>
                     </div>
                     <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
@@ -63,20 +65,30 @@
                 </form>
             </div>
             <!--<div class="modal-footer">-->
-                <!--<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>-->
-                <!--<button type="submit" class="btn btn-primary">登陆</button>-->
+            <!--<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>-->
+            <!--<button type="submit" class="btn btn-primary">登陆</button>-->
             <!--</div>-->
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
 <div id="fullPage" class="fullpage-wrapper">
-    <div id="p1" class="section active " style="background-color: #E8EAED"></div>
+    <div id="p1" class="section active " style="background-color: #fff">
+        <script type="text/html" id="model">
+            <h4>关于我？</h4>
+            <ul class="tags" id="tags">
+                <% for(var index in data){ %>
+                <li class="tag"><span><%=data[index]%></span></li>
+                <% } %>
+            </ul>
+        </script>
+    </div>
     <div class="section" style="background-color: #3c763d">page_2</div>
     <div class="section" style="background-color: pink">page_3</div>
     <div class="section" style="background-color: yellow">page_4</div>
 </div>
 
 <script src="../public/modules/jquery-3.3.1.min.js"></script>
+<script src="../node_modules/ejs/ejs.min.js"></script>
 <script src="../public/modules/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="../public/modules/jquery.fullPage.js"></script>
 <script src="../public/javascripts/index.js"></script>

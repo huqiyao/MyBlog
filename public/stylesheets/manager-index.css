@@ -1,10 +1,60 @@
-body{
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body,html{
     height: 100%;
     width: 100%;
+    overflow: hidden;
 }
 .screen{
     height: 100%;
     width: 100%;
-    background: url("../images/manager-bg.jpg") no-repeat;
+    background: url("../images/universal.jpg") no-repeat;
     background-size: 100% 100%;
+}
+ul{
+    border-radius: 5px 5px;
+    position: relative;
+    top: 2.5%;
+    margin: 0 auto;
+    height: 95%;
+    width: 85%;
+    /*background-color:mintcream;*/
+    opacity:0.4;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:space-around;
+    /*box-shadow: ;*/
+    /*top:-100%;*/
+}
+li{
+    background: mintcream;
+    margin-top: 20px;
+    display: inline-block;
+    box-shadow:4px 5px 4px #788a99;
+    border-radius: 5px;
+    padding: 0;
+}
+h4{
+    width: 10%;
+    height: 100%;
+    background-color: #b2dba1;
+    text-align: center;
+    margin: 0;
+    /*padding: 8px;*/
+    border-right: 1px solid black;
+}
+[class^="col"]{
+    padding: 0;
+}
+h4::before{
+    content: "❤";
+    position: absolute;
+    font-size: 25px;
+    left: 0;
+    /*top: 0;*/
 }

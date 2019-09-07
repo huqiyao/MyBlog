@@ -72,7 +72,8 @@ body {
 }
 .navbar-inverse .navbar-nav > li > a:hover::after,.navbar-inverse .navbar-nav > .active > a::after{
     color: black;
-    background-image: linear-gradient(-270deg, #90F1E9 0%, #75ced5 100%);
+    /*background-image: linear-gradient(-270deg, #90F1E9 0%, #75ced5 100%);*/
+    background-image: linear-gradient(-270deg, #2B2B2B,black);
     width: 100%;
 }
 .navbar-inverse .navbar-nav > li > a::after ,.navbar-inverse .navbar-nav > li > a.active::after{
@@ -80,7 +81,7 @@ body {
     content: "";
     display: block;
     width: 50%;
-    height: 4px;
+    height: 2px;
     border-radius: 100px;
     position: absolute;
     bottom: -5px;
