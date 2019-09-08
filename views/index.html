@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>首页</title>
+    <title><%=title%></title>
     <link href="../public/modules/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../public/stylesheets/index.css">
     <link rel="stylesheet" href="../public/stylesheets/global.css">
@@ -73,14 +73,11 @@
 </div>
 <div id="fullPage" class="fullpage-wrapper">
     <div id="p1" class="section active " style="background-color: #fff">
-        <script type="text/html" id="model">
-            <h4>关于我？</h4>
-            <ul class="tags" id="tags">
-                <% for(var index in data){ %>
-                <li class="tag"><span><%=data[index]%></span></li>
-                <% } %>
-            </ul>
-        </script>
+        <ul id="tags" class="tags">
+            <% for(var tag of tags){ %>
+            <li class="tag"><span><%=tag%></span></li>
+            <% } %>
+        </ul>
     </div>
     <div class="section" style="background-color: #3c763d">page_2</div>
     <div class="section" style="background-color: pink">page_3</div>
@@ -88,7 +85,6 @@
 </div>
 
 <script src="../public/modules/jquery-3.3.1.min.js"></script>
-<script src="../node_modules/ejs/ejs.min.js"></script>
 <script src="../public/modules/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="../public/modules/jquery.fullPage.js"></script>
 <script src="../public/javascripts/index.js"></script>
