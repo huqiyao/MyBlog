@@ -9,6 +9,8 @@ function responseDoReturn(res, ret) {
         });
     } else {
         res.json(ret);
+        // 类似于res.json， 返回json数据推荐用res.json
+        // 因为使用这个方法来转换其他的值到json
     }
 
 };

@@ -1,7 +1,7 @@
 config = {
     host:'localhost',
     user:'root',
-    password:'87654321',
+    password:'a',
     database:'blog',
     port:3306
 }

@@ -107,3 +107,206 @@ body {
     border-color: lightgray;
 }
 
+
+/*@media (min-width: 768px) {*/
+@media (min-width: 729px) {
+    .tag {
+        margin: 3rem 2rem 1rem 2rem;
+    }
+}
+
+
+/* 飞入效果 */
+@keyframes fromLeft {
+    from, 60%, 75%, 90%, to {
+        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+    0% {
+        /*display: none;*/
+        opacity: 0;
+        transform: translate3d(-3000px, 0, 0);
+    }
+    60% {
+        opacity: 1;
+        transform: translate3d(25px, 0, 0);
+    }
+    75% {
+        transform: translate3d(-10px, 0, 0);
+    }
+    90% {
+        transform: translate3d(5px, 0, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes fromTop {
+    from, 60%, 75%, 90%, to {
+        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+    0% {
+        opacity: 0;
+        transform: translate3d(0, -3000px, 0);
+    }
+    60% {
+        opacity: 1;
+        transform: translate3d(0, -25px, 0);
+    }
+    75% {
+        transform: translate3d(0, -10px, 0);
+    }
+    90% {
+        transform: translate3d(0, 5px, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes fromRight {
+    from, 60%, 75%, 90%, to {
+        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+    0% {
+        display: none;
+        opacity: 0;
+        transform: translate3d(3000px, 0, 0);
+    }
+    60% {
+        opacity: 1;
+        transform: translate3d(25px, 0, 0);
+    }
+    75% {
+        transform: translate3d(10px, 0, 0);
+    }
+    90% {
+        transform: translate3d(-5px, 0, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes fromBottom {
+    from, 60%, 75%, 90%, to {
+        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 3000px, 0);
+    }
+    60% {
+        opacity: 1;
+        transform: translate3d(0, 25px, 0);
+    }
+    75% {
+        transform: translate3d(0, 10px, 0);
+    }
+    90% {
+        transform: translate3d(0, -5px, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes fromRightBottom {
+    from, 60%, 75%, 90%, to {
+        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+    0% {
+        opacity: 0;
+        transform: translate3d(3000px, 3000px, 0);
+    }
+    60% {
+        opacity: 1;
+        transform: translate3d(25px, 25px, 0);
+    }
+    75% {
+        transform: translate3d(10px, 10px, 0);
+    }
+    90% {
+        transform: translate3d(-5px, -5px, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes fromLeftBottom {
+    from, 60%, 75%, 90%, to {
+        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+    0% {
+        opacity: 0;
+        transform: translate3d(-3000px, 3000px, 0);
+    }
+    60% {
+        opacity: 1;
+        transform: translate3d(-25px, 25px, 0);
+    }
+    75% {
+        transform: translate3d(-10px, 10px, 0);
+    }
+    90% {
+        transform: translate3d(5px, -5px, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes fromLeftTop {
+    from, 60%, 75%, 90%, to {
+        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+    0% {
+        opacity: 0;
+        transform: translate3d(-3000px, -3000px, 0);
+    }
+    60% {
+        opacity: 1;
+        transform: translate3d(-25px, -25px, 0);
+    }
+    75% {
+        transform: translate3d(10px, 10px, 0);
+    }
+    90% {
+        transform: translate3d(-5px, -5px, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes fromRightTop {
+    from, 60%, 75%, 90%, to {
+        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+    0% {
+        opacity: 0;
+        transform: translate3d(3000px, -3000px, 0);
+    }
+    60% {
+        opacity: 1;
+        transform: translate3d(25px, -25px, 0);
+    }
+    75% {
+        transform: translate3d(10px, -10px, 0);
+    }
+    90% {
+        transform: translate3d(-5px, 5px, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}

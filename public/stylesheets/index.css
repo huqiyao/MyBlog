@@ -1,29 +1,27 @@
-
 /*模态框样式*/
-.login-box{
+.login-box {
     border-top: 7px solid #337AB7;
 }
 
-
 /*按钮样式*/
-.btn{
+.btn {
     padding: 6px 10px;
 }
 
-.container{
+.container {
     margin-top: 10px;
 }
 
-
-
-.fp-tableCell{
+.fp-tableCell {
     display: flex !important;
     flex-direction: column;
     align-items: center; /*子元素垂直居中*/
     justify-content: center;
 }
+
 /*tags*/
-.tags{
+
+.tags {
     /*margin: 0 auto;*/
     list-style: none;
     padding: 0;
@@ -31,9 +29,10 @@
     text-align: center;
     /*position: relative;*/
     /*top: 40%;*/
-    border: 1px solid black;
+    /*border: 1px solid black;*/
 }
-.tag{
+
+.tag {
     color: #737373;
     background: #cccccc;
     -moz-box-shadow: 0 4px 0 0 #b3b3b3, 4px 4px 0 0 #b3b3b3;
@@ -42,7 +41,7 @@
     display: inline-block;
     font: normal normal normal 14px/12px 'Open Sans', sans-serif;
     height: 30px;
-    margin: 2rem 2rem 1rem 0;
+    margin: 1rem 2rem 1rem 0;
     padding: 1rem 2.8rem 1rem 2rem;
     position: relative;
     top: 0;
@@ -60,6 +59,7 @@
     -webkit-border-radius: 4px;
     border-radius: 4px 1px 1px 4px;
 }
+
 .tag:before {
     color: rgba(255, 255, 255, 0.9);
     background: #cccccc;
@@ -89,6 +89,7 @@
     -webkit-border-radius: 1px;
     border-radius: 1px 1px 4px;
 }
+
 .tag:after {
     display: inline-block;
     background: #FFF;
@@ -119,12 +120,82 @@
 
 /* Rounded Tag */
 /*.tag-round {*/
-    /*-moz-border-radius: 4px 1px 1px 4px;*/
-    /*-webkit-border-radius: 4px;*/
-    /*border-radius: 4px 1px 1px 4px;*/
+/*-moz-border-radius: 4px 1px 1px 4px;*/
+/*-webkit-border-radius: 4px;*/
+/*border-radius: 4px 1px 1px 4px;*/
 /*}*/
 /*.tag-first:before {*/
-    /*-moz-border-radius: 1px 1px 4px;*/
-    /*-webkit-border-radius: 1px;*/
-    /*border-radius: 1px 1px 4px;*/
+/*-moz-border-radius: 1px 1px 4px;*/
+/*-webkit-border-radius: 1px;*/
+/*border-radius: 1px 1px 4px;*/
 /*}*/
+
+@keyframes bounce {
+    0%,30%,60%,90%,100%{
+        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+    0%{
+        transform: translate3d(-3000px,-3000px,0);
+    }
+    30%{
+        transform: translate3d(0,100px,0);
+    }
+    60%{
+        transform: translate3d(0,-68px,0);
+    }
+    80%{
+        transform: translate3d(0,68px,0);
+    }
+    90%{
+        transform: translate3d(0,-50px,0);
+    }
+    100%{
+        transform: translate3d(0,50px,0);
+
+    }
+}
+@keyframes shake {
+    0% {
+        opacity: 0;
+        transform: translate3d(3000px,-3000px,0);
+    }
+    50%{
+        opacity: 1;
+        transform:rotate(360deg);
+    }
+    100% {
+        opacity: 1;
+        transform:rotate(-360deg) translate3d(0,0,0);
+    }
+}
+
+.intro{
+    font-weight: bolder;
+}
+.aboutMe{
+    /*opacity: 0;*/
+    z-index: 100;
+    animation: bounce 1.3s cubic-bezier(.1,.25,.1,.25) forwards ;
+    /*animation: fromRightBottom 0.8s 0.8s linear forwards;*/
+}
+.icon{
+    opacity: 0;
+    margin-left: 35px;
+    animation: bounce 1.3s cubic-bezier(.1,.25,.1,.25) forwards , shake 1s 0.8s cubic-bezier(.1,.25,.1,.25) forwards;
+}
+.tag:nth-child(2n+1) {
+    opacity: 0;
+    animation: fromRight 0.8s 2s linear forwards;
+}
+
+.tag:nth-child(2n) {
+    opacity: 0;
+    animation: fromLeft 0.8s 3s linear forwards;
+}
+.tag:nth-child(3n){
+    animation: fromRightBottom 0.5s 3.5s linear forwards;
+}
+
+
+
+

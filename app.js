@@ -5,11 +5,16 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 // 新添加body解析模块
 var bodyParser = require('body-parser');
+var app = express();
+
+// 处理post表单登录请求
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -43,9 +48,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// 处理post表单登录请求
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(bodyParser.json());
+
 
 
 

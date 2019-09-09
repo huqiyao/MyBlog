@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><%=title%></title>
+    <title>Qiyao's Blog</title>
     <link href="../public/modules/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../public/stylesheets/index.css">
     <link rel="stylesheet" href="../public/stylesheets/global.css">
@@ -73,13 +73,23 @@
 </div>
 <div id="fullPage" class="fullpage-wrapper">
     <div id="p1" class="section active " style="background-color: #fff">
+        <div class="intro">
+            <h2 class="intro aboutMe">我</h2>
+            <h2 class="intro icon">?</h2>
+        </div>
         <ul id="tags" class="tags">
             <% for(var tag of tags){ %>
             <li class="tag"><span><%=tag%></span></li>
             <% } %>
         </ul>
     </div>
-    <div class="section" style="background-color: #3c763d">page_2</div>
+    <div class="section" style="background-color: #3c763d">
+        <form action="/leaveWord" method="post">
+            <input name="content" placeholder="请输入内容" type="text">
+            <input name="email" placeholder="请输入邮箱" type="text">
+            <button type="submit">发表</button>
+        </form>
+    </div>
     <div class="section" style="background-color: pink">page_3</div>
     <div class="section" style="background-color: yellow">page_4</div>
 </div>

@@ -5,9 +5,10 @@ var db = require('./basicConnection');
 
 
 function addComment(req,res,next){
-    var param = req.query || req.params;
+    // var param = req.query || req.params || req.body;
+    var param = req.body;
     //content,email
-
+    console.log(param);
     db.queryArgs(sqlCommand.insertCmt,[param.content,param.email],function(err,result) {
         if(!err){
             result={
