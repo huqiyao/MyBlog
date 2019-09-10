@@ -9,6 +9,7 @@ body {
 
 .nav{
   background: none;
+    z-index: 10000;
 }
 .navbar-inverse .navbar-brand {
     line-height: 50px;
