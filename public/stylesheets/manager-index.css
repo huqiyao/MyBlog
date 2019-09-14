@@ -240,4 +240,36 @@ a:active, a:hover, a:visited, a:link {
 }
 
 
+/*右侧显示内容*/
+.content{
+position: absolute;
+    top: 0;
+    left: 6.5%;
+    width: 87%;
+    background-color: #b2dba1;
+    min-height: 100%;
+    height: auto;
+    display: none;
+}
+.show{
+    display: block;
+}
+
+/*写文章按钮*/
+.write-article{
+    /*border-radius: 100%;*/
+    position: absolute;
+    top: 0;
+    right:0;
+    padding: 3px 4px;
+}
+.write-article::before{
+    content: "+";
+    font-weight: 700;
+    /*position: absolute;*/
+    /*left: 1px;*/
+    /*margin-right: 2px;*/
+    /*font-weight: 500;*/
+}
+
 

@@ -40,8 +40,32 @@ $('#close').click(function () {
 $(document).ready(function () {
     $('.item-name').each(function (idx) {
         $(this).click(function () {
-        $(".item-name").removeClass("active");
-        $(".item-name").eq(idx).addClass("active");
-    });
+            $(".item-name").removeClass("active");
+            $(".item-name").eq(idx).addClass("active");
+            $(".content").removeClass("show");
+            $(".content").eq(idx).addClass("show");
+        //    根据当前选中的nav响应显示页面
+        //     $.ajax({
+        //         url:'/userStatus',
+        //         type:'GET',
+        //         data:{index:idx+1},
+        //         dataType:'JSON',
+        //         success:function (res) {
+        //             console.log("成功");
+        //             console.log(res);
+        //             var temp = $("#model").html();
+        //             var html = ejs.render(temp,{data:res});
+        //             $("#article").html(html);
+        //         },
+        //         error:function (res) {
+        //             console.log("失败");
+        //             // console.log(res);
+        //         },
+        //         complete:function (res) {
+        //             console.log("完成");
+        //             // console.log(res);
+        //         }
+        //     })
+        });
     })
 });

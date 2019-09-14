@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>撰写博客</title>
+    <link rel="stylesheet" href="../../node_modules/editor.md/css/editormd.min.css"/>
+    <link href="../../public/modules/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+        form {
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+<form class="form-horizontal" role="form" action="/postArticle" method="post">
+    <div class="form-group" style="width:90%">
+        <!--<label for="article-title" class="control-label">账号:</label>-->
+        <!--<div class="col-md-9">-->
+        <input type="text" class="form-control " id="article-title" placeholder="请输入标题" name="article-title">
+        <!--</div>-->
+    </div>
+    <div id="editor">
+        <textarea style="display:none;" id="article-content"></textarea>
+        <textarea id="editor-html-code" name="editor-html-code" style="display:none;"></textarea>
+    </div>
+    <button type="submit" class="btn btn-success btn-sm">发表</button>
+</form>
+<script src="../../public/modules/jquery-3.3.1.min.js"></script>
+<script src="../../public/modules/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="../../node_modules/editor.md/editormd.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var editor = editormd("editor", {
+            width: "90%",
+            height: "80%",
+            theme: "white",
+            path: "../../node_modules/editor.md/lib/",
+            saveHTMLToTextarea: true, // 保存 HTML 到 Textarea
+            toolbarAutoFixed: true,//工具栏自动固定定位的开启与禁用
+            syncScrolling: "single",
+        });
+    });
+</script>
+</body>
+</html>

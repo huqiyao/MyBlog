@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var partials = require('express-partials');
 // 新添加body解析模块
 var bodyParser = require('body-parser');
 var app = express();
@@ -13,6 +14,7 @@ app.use(bodyParser.json());
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var manageRouter= require('./routes/manage');
 
 
 
@@ -20,6 +22,8 @@ var usersRouter = require('./routes/users');
 app.set('views', path.join(__dirname, 'views'));
 app.engine('.html', require('ejs').__express);
 app.set('view engine', 'html');
+// partials
+app.use(partials());
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -31,6 +35,7 @@ app.use('/public/',express.static('./public/'));
 app.use(indexRouter);
 // app.use('/users', usersRouter);
 app.use(usersRouter);
+app.use(manageRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
