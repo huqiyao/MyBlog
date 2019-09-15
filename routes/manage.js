@@ -1,5 +1,5 @@
 var express = require('express');
-var path = require('path');
+// var path = require('path');
 var router = express.Router();
 
 router.get('/userStatus',function (req,res) {
@@ -17,5 +17,10 @@ router.get('/userStatus',function (req,res) {
         res.send("好像不对欸");
     }
 });
-
+router.get('/toEdit',function (req,res) {
+    res.render('manager/editor');
+})
+router.post('/postArticle',function (req,res) {
+    res.send(req.body);
+})
 module.exports = router;

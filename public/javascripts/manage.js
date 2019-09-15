@@ -45,27 +45,44 @@ $(document).ready(function () {
             $(".content").removeClass("show");
             $(".content").eq(idx).addClass("show");
         //    根据当前选中的nav响应显示页面
-        //     $.ajax({
-        //         url:'/userStatus',
-        //         type:'GET',
-        //         data:{index:idx+1},
-        //         dataType:'JSON',
-        //         success:function (res) {
-        //             console.log("成功");
-        //             console.log(res);
-        //             var temp = $("#model").html();
-        //             var html = ejs.render(temp,{data:res});
-        //             $("#article").html(html);
-        //         },
-        //         error:function (res) {
-        //             console.log("失败");
-        //             // console.log(res);
-        //         },
-        //         complete:function (res) {
-        //             console.log("完成");
-        //             // console.log(res);
-        //         }
-        //     })
+            $.ajax({
+                url:'/userStatus',
+                type:'GET',
+                data:{index:idx+1},
+                dataType:'JSON',
+                success:function (res) {
+                    console.log("成功");
+                    console.log(res);
+                    // var temp = $("#model").html();
+                    // var html = ejs.render(temp,{data:res});
+                    // $("#article").html(html);
+                },
+                error:function (res) {
+                    console.log("失败");
+                    // console.log(res);
+                },
+                complete:function (res) {
+                    console.log("完成");
+                    // console.log(res);
+                }
+            })
         });
     })
+});
+
+// 获得复选框选中的值
+var arr = [];
+$("input[type='checkbox']").each(function (idx) {
+    $("input[type='checkbox']").eq(idx).change(function () {
+        if(this.checked === true){
+            var val = this.parentNode.childNodes[2].textContent;
+            // console.log(val);
+            if(arr.indexOf(val) === -1){
+                arr.push(val);
+                console.log(arr);
+                $("#checkbox-value").attr('value',arr);
+                console.log($("#checkbox-value").attr('value'));
+            }
+        }
+    });
 });

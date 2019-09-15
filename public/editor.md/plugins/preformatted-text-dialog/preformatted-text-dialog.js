@@ -1,7 +1,7 @@
 /*!
- * Code block dialog plugin for Editor.md
+ * Preformatted text dialog plugin for Editor.md
  *
- * @file        code-block-dialog.js
+ * @file        preformatted-text-dialog.js
  * @author      pandao
  * @version     1.2.0
  * @updateTime  2015-03-07
@@ -13,67 +13,26 @@
 
     var factory = function (exports) {
 		var cmEditor;
-		var pluginName    = "code-block-dialog";
-    
-		// for CodeBlock dialog select
-		var codeLanguages = exports.codeLanguages = {
-			asp           : ["ASP", "vbscript"],
-			actionscript  : ["ActionScript(3.0)/Flash/Flex", "clike"],
-			bash          : ["Bash/Bat", "shell"],
-			css           : ["CSS", "css"],
-			c             : ["C", "clike"],
-			cpp           : ["C++", "clike"],
-			csharp        : ["C#", "clike"],
-			coffeescript  : ["CoffeeScript", "coffeescript"],
-			d             : ["D", "d"],
-			dart          : ["Dart", "dart"],
-			delphi        : ["Delphi/Pascal", "pascal"],
-			erlang        : ["Erlang", "erlang"],
-			go            : ["Golang", "go"],
-			groovy        : ["Groovy", "groovy"],
-			html          : ["HTML", "text/html"],
-			java          : ["Java", "clike"],
-			json          : ["JSON", "text/json"],
-			javascript    : ["Javascript", "javascript"],
-			lua           : ["Lua", "lua"],
-			less          : ["LESS", "css"],
-			markdown      : ["Markdown", "gfm"],
-			"objective-c" : ["Objective-C", "clike"],
-			php           : ["PHP", "php"],
-			perl          : ["Perl", "perl"],
-			python        : ["Python", "python"],
-			r             : ["R", "r"],
-			rst           : ["reStructedText", "rst"],
-			ruby          : ["Ruby", "ruby"],
-			sql           : ["SQL", "sql"],
-			sass          : ["SASS/SCSS", "sass"],
-			shell         : ["Shell", "shell"],
-			scala         : ["Scala", "clike"],
-			swift         : ["Swift", "clike"],
-			vb            : ["VB/VBScript", "vb"],
-			xml           : ["XML", "text/xml"],
-			yaml          : ["YAML", "yaml"]
-		};
+		var pluginName   = "preformatted-text-dialog";
 
-		exports.fn.codeBlockDialog = function() {
+		exports.fn.preformattedTextDialog = function() {
 
-			var _this       = this;
+            var _this       = this;
             var cm          = this.cm;
             var lang        = this.lang;
-            var editor      = this.editor;
+			var editor      = this.editor;
             var settings    = this.settings;
             var cursor      = cm.getCursor();
             var selection   = cm.getSelection();
             var classPrefix = this.classPrefix;
+			var dialogLang  = lang.dialog.preformattedText;
 			var dialogName  = classPrefix + pluginName, dialog;
-			var dialogLang  = lang.dialog.codeBlock;
 
 			cm.focus();
 
             if (editor.find("." + dialogName).length > 0)
             {
                 dialog = editor.find("." + dialogName);
-                dialog.find("option:first").attr("selected", "selected");
                 dialog.find("textarea").val(selection);
 
                 this.dialogShowMask(dialog);
@@ -82,19 +41,16 @@
             }
             else 
             {      
-                var dialogHTML = "<div class=\"" + classPrefix + "code-toolbar\">" +
-                                        dialogLang.selectLabel + "<select><option selected=\"selected\" value=\"\">" + dialogLang.selectDefaultText + "</option></select>" +
-                                    "</div>" +
-                                    "<textarea placeholder=\"coding now....\" style=\"display:none;\">" + selection + "</textarea>";
+                var dialogContent = "<textarea placeholder=\"coding now....\" style=\"display:none;\">" + selection + "</textarea>";
 
                 dialog = this.createDialog({
                     name   : dialogName,
                     title  : dialogLang.title,
                     width  : 780,
-                    height : 565,
+                    height : 540,
                     mask   : settings.dialogShowMask,
                     drag   : settings.dialogDraggable,
-                    content    : dialogHTML,
+                    content : dialogContent,
                     lockScreen : settings.dialogLockScreen,
                     maskStyle  : {
                         opacity         : settings.dialogMaskOpacity,
@@ -103,33 +59,33 @@
                     buttons : {
                         enter  : [lang.buttons.enter, function() {
                             var codeTexts  = this.find("textarea").val();
-                            var langName   = this.find("select").val();
-
-                            if (langName === "")
-                            {
-                                alert(lang.dialog.codeBlock.unselectedLanguageAlert);
-                                return false;
-                            }
 
                             if (codeTexts === "")
                             {
-                                alert(lang.dialog.codeBlock.codeEmptyAlert);
+                                alert(dialogLang.emptyAlert);
                                 return false;
                             }
 
-                            langName = (langName === "other") ? "" : langName;
+                            codeTexts = codeTexts.split("\n");
 
-                            cm.replaceSelection(["```" + langName, codeTexts, "```"].join("\n"));
-
-                            if (langName === "") {
-                                cm.setCursor(cursor.line, cursor.ch + 3);
+                            for (var i in codeTexts)
+                            {
+                                codeTexts[i] = "    " + codeTexts[i];
                             }
+                            
+                            codeTexts = codeTexts.join("\n");
+                            
+                            if (cursor.ch !== 0) {
+                                codeTexts = "\r\n\r\n" + codeTexts;
+                            }
+
+                            cm.replaceSelection(codeTexts);
 
                             this.hide().lockScreen(false).hideMask();
 
                             return false;
                         }],
-                        cancel : [lang.buttons.cancel, function() {                                   
+                        cancel : [lang.buttons.cancel, function() {                                  
                             this.hide().lockScreen(false).hideMask();
 
                             return false;
@@ -137,24 +93,9 @@
                     }
                 });
             }
-
-			var langSelect = dialog.find("select");
-
-			if (langSelect.find("option").length === 1) 
-			{
-				for (var key in codeLanguages)
-				{
-					var codeLang = codeLanguages[key];
-					langSelect.append("<option value=\"" + key + "\" mode=\"" + codeLang[1] + "\">" + codeLang[0] + "</option>");
-				}
-
-				langSelect.append("<option value=\"other\">" + dialogLang.otherLanguage + "</option>");
-			}
-			
-			var mode   = langSelect.find("option:selected").attr("mode");
 		
 			var cmConfig = {
-				mode                      : (mode) ? mode : "text/html",
+				mode                      : "text/html",
 				theme                     : settings.theme,
 				tabSize                   : 4,
 				autofocus                 : true,
@@ -184,11 +125,11 @@
 
 				cmObj.css({
 					"float"   : "none", 
-					margin    : "8px 0",
+					margin    : "0 0 5px",
 					border    : "1px solid #ddd",
 					fontSize  : settings.fontSize,
 					width     : "100%",
-					height    : "390px"
+					height    : "410px"
 				});
 
 				cmEditor.on("change", function(cm) {
@@ -197,18 +138,12 @@
 			} 
 			else 
 			{
-
 				cmEditor.setValue(cm.getSelection());
 			}
-
-			langSelect.change(function(){
-				var _mode = $(this).find("option:selected").attr("mode");
-				cmEditor.setOption("mode", _mode);
-			});
 		};
 
 	};
-    
+
 	// CommonJS/Node.js
 	if (typeof require === "function" && typeof exports === "object" && typeof module === "object")
     { 
@@ -224,7 +159,7 @@
 
 		} else { // for Sea.js
 			define(function(require) {
-                var editormd = require("./../../editormd");
+                var editormd = require("../../editormd");
                 factory(editormd);
             });
 		}
