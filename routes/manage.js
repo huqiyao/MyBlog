@@ -1,5 +1,6 @@
 var express = require('express');
 // var path = require('path');
+var article = require('article');
 var router = express.Router();
 
 router.get('/userStatus',function (req,res) {
@@ -21,6 +22,7 @@ router.get('/toEdit',function (req,res) {
     res.render('manager/editor');
 })
 router.post('/postArticle',function (req,res) {
-    res.send(req.body);
+    console.log(req.body)
+    article.addArticle(req,res,next);
 })
 module.exports = router;
