@@ -19,24 +19,6 @@ $('#close').click(function () {
 /**
  *  导航栏选项active样式
  * */
-// $(document).ready(function(){
-//     console.log("nhao");
-//     $('.item').each(function(index){
-//         console.log(index);
-//         $(this).click(function(){
-//             $("a").removeClass("active");
-//             $("a").eq(index).addClass("active");
-//         });
-//     });
-// });
-// $('.item').each(function (index) {
-//     console.log(index);
-//     $(this).click(function () {
-//         $("a").removeClass("active");
-//         $("a").eq(index).addClass("active");
-//     });
-// });
-
 $(document).ready(function () {
     $('.item-name').each(function (idx) {
         $(this).click(function () {
@@ -53,12 +35,13 @@ $(document).ready(function () {
                 success:function (res) {
                     console.log("成功");
                     console.log(res);
-                    // var temp = $("#model").html();
-                    // var html = ejs.render(temp,{data:res});
-                    // $("#article").html(html);
+                    console.log((res.articleList)[1].content);
+                    var context = {article: res.articleList};
+                    var html = template('model',context);
+                    $('#article-list').html(html);
                 },
                 error:function (res) {
-                    console.log("失败");
+                    console.log("失败:" + res);
                     // console.log(res);
                 },
                 complete:function (res) {
@@ -71,18 +54,24 @@ $(document).ready(function () {
 });
 
 // 获得复选框选中的值
-var arr = [];
-$("input[type='checkbox']").each(function (idx) {
-    $("input[type='checkbox']").eq(idx).change(function () {
-        if(this.checked === true){
-            var val = this.parentNode.childNodes[2].textContent;
-            // console.log(val);
-            if(arr.indexOf(val) === -1){
-                arr.push(val);
-                console.log(arr);
-                $("#checkbox-value").attr('value',arr);
-                console.log($("#checkbox-value").attr('value'));
+$(document).ready(function () {
+    var arr = [];
+    $("input[type='checkbox']").each(function (idx) {
+        // if($("input[type='checkbox']").eq(idx).checked === true && arr.indexOf($("input[type='checkbox']").eq(idx).parentNode.childNodes[2].textContent) === -1){
+        //     console.log($("input[type='checkbox']").eq(idx).parentNode);
+        //     arr.push($("input[type='checkbox']").eq(idx).parentNode.childNodes[2].textContent);
+        // }
+        $("input[type='checkbox']").eq(idx).change(function () {
+            if(this.checked === true){
+                var val = this.parentNode.childNodes[2].textContent;
+                // console.log(val);
+                if(arr.indexOf(val) === -1){
+                    arr.push(val);
+                    console.log(arr);
+                    $("#checkbox-value").attr('value',arr);
+                    console.log($("#checkbox-value").attr('value'));
+                }
             }
-        }
+        });
     });
 });

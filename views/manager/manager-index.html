@@ -39,6 +39,7 @@
     </div>
     <div id="articles" class="content">
         <button class="btn btn-default write-article"><a href="/toEdit">添加</a></button>
+        <div id="article-list"></div>
     </div>
     <div id="works" class="content">
         <p>3</p>
@@ -50,7 +51,14 @@
 <script src="../../public/modules/jquery-3.3.1.min.js"></script>
 <script src="../../public/modules/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="../../public/javascripts/manage.js"></script>
+<script src="../../public/modules/template-web.js"></script>
 <script type="text/template" id="model">
+    {{each article}}
+    <p>{{$value.title}}</p>
+    <p>{{$value.tag}}</p>
+    <p>{{@($value.content)}}</p>
+    <p>{{$value.time}}</p>
+    {{/each}}
 </script>
 </body>
 </html>

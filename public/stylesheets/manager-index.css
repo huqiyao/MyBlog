@@ -35,8 +35,8 @@ a:active, a:hover, a:visited, a:link {
 }
 
 .navbar-toggle {
-    position: fixed;
-    left: 10px;
+    position: absolute;
+    left: 2px;
 }
 
 .info-close {
@@ -189,6 +189,43 @@ a:active, a:hover, a:visited, a:link {
     /*transition: width 0.5s;*/
 }
 
+/*右侧显示内容*/
+.content{
+    position: absolute;
+    top: 0;
+    left: 6.5%;
+    width: 87%;
+    background-color: #b2dba1;
+    min-height: 100%;
+    height: auto;
+    display: none;
+}
+.show{
+    display: block;
+}
+
+/*写文章按钮*/
+.write-article{
+    /*border-radius: 100%;*/
+    position: absolute;
+    top: 0;
+    right:0;
+    padding: 3px 4px;
+}
+.write-article::before{
+    content: "+";
+    font-weight: 700;
+    /*position: absolute;*/
+    /*left: 1px;*/
+    /*margin-right: 2px;*/
+    /*font-weight: 500;*/
+}
+.write-article a{
+    color: black;
+}
+
+
+
 @media (min-width: 768px ) and (max-width: 992px) {
     .left-nav {
         width: 30%;
@@ -218,8 +255,14 @@ a:active, a:hover, a:visited, a:link {
         width: 50%;
         background: rgba(20, 20, 20, 0.9);
     }
-
+    .navbar-toggle .icon-bar {
+        display: block;
+        width: 15px;
+        height: 2px;
+        border-radius: 1px;
+    }
     .navbar-toggle {
+        padding: 7px ;
         display: block;
         background-color: ghostwhite;
     }
@@ -239,37 +282,21 @@ a:active, a:hover, a:visited, a:link {
     /*}*/
 }
 
+@media  (max-width: 432px){
+    .navbar-toggle .icon-bar {
+        width: 13px;
+    }
+    .navbar-toggle {
+        padding: 4px ;
+    }
+    .content{
+        left: 7%;
+        width: 86%;
+    }
 
-/*右侧显示内容*/
-.content{
-position: absolute;
-    top: 0;
-    left: 6.5%;
-    width: 87%;
-    background-color: #b2dba1;
-    min-height: 100%;
-    height: auto;
-    display: none;
-}
-.show{
-    display: block;
 }
 
-/*写文章按钮*/
-.write-article{
-    /*border-radius: 100%;*/
-    position: absolute;
-    top: 0;
-    right:0;
-    padding: 3px 4px;
-}
-.write-article::before{
-    content: "+";
-    font-weight: 700;
-    /*position: absolute;*/
-    /*left: 1px;*/
-    /*margin-right: 2px;*/
-    /*font-weight: 500;*/
-}
+
+
 
 
