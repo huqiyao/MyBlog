@@ -35,7 +35,7 @@ $(document).ready(function () {
                 success:function (res) {
                     console.log("成功");
                     console.log(res);
-                    console.log((res.articleList)[1].content);
+                    // console.log((res.articleList)[1].content);
                     var context = {article: res.articleList};
                     var html = template('model',context);
                     $('#article-list').html(html);
