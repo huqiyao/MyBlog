@@ -10,13 +10,6 @@ router.get('/userStatus',function (req,res) {
         article.queryAllArticle(req,res,function (ret) {
             res.send(ret);
         });
-        // res.setHeader('Content-Type', 'text/html');
-        // res.sendfile('../public/partials/article-tmpl.html');
-        // res.sendFile(path.join(__dirname, '../public', 'index1.html'));
-        // res.sendFile(path.join(__dirname, '../public/partials', 'article-tmpl.html'));
-        // res.send({
-        //     name:'文章'
-        // })
     }else{
         res.send("好像不对欸");
     }
