@@ -50,14 +50,15 @@ $('#my-article').click(function () {
                     // totalPage: Math.ceil(res.length / 4), //总页数
                     totalPage:res.totalPage,
                     isShow: true, //是否显示
-                    count: 4, // 每次显示的页码数
+                    count: res.totalPage<5?res.totalPage:5, // 每次显示的页码数
+                    coping:true,
                     homePageText: "首页",
                     endPageText: "尾页",
                     prevPageText: "上一页",
                     nextPageText: "下一页",
                     callback: function (tempPage) { //当点击之后的回调函数，current为当前页码
                         $(".ui-pagination-page-item").click(function () {
-                            tempPage = this.getAttribute("data-current")-1;
+                            tempPage = this.getAttribute("data-current");
                             // console.log(tempPage)
                             // showProject(tempPage);
                             $.ajax({
