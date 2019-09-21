@@ -3,22 +3,26 @@ var express = require('express');
 var article = require('./article');
 var router = express.Router();
 
-router.get('/userStatus',function (req,res) {
+router.get('/showArticleList', function (req, res) {
     // console.log(req);
     console.log(req.query);
-    if(req.query.index === '2'){
-        article.queryAllArticle(req,res,function (ret) {
-            res.send(ret);
-        });
-    }else{
-        res.send("好像不对欸");
-    }
+    // if(req.query.index === '2'){
+    //     article.queryAllArticle(req,res,function (ret) {
+    //         ret.index = req.query.index;
+    //         res.send(ret);
+    //     });
+    // }else{
+    //     res.send("好像不对欸");
+    // }
+    article.queryAllArticle(req, res, function (ret) {
+        res.send(ret);
+    });
 });
-router.get('/toEdit',function (req,res) {
+router.get('/toEdit', function (req, res) {
     res.render('manager/editor');
-})
-router.post('/postArticle',function (req,res) {
+});
+router.post('/postArticle', function (req, res) {
     console.log(req.body);
-    article.addArticle(req,res);
+    article.addArticle(req, res);
 });
 module.exports = router;

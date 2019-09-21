@@ -1,6 +1,6 @@
 var sqlCommand = require('./sqlCommand');
 var db = require('./basicConnection');
-var utils = require('./utils')
+var utils = require('./utils');
 
 function addArticle(req, res, next) {
     // var param = req.query || req.params || req.body;
@@ -29,18 +29,25 @@ function queryAllArticle(req, res, callback) {
     var param = req.query || req.params;
     var result = {};
     // 获取前台页面传过来的参数
-    var currentPage = param.page ? param.page : 1;// 页码
-    var pageSize = parseInt(param.num ? param.num : 4); // 默认页数
+    var currentPage = parseInt(param.page ? param.page : 1);// 页码
+    var pageSize = parseInt(param.num ? param.num : 4); // 显示得条数
     var start = (currentPage - 1) * pageSize;
-    db.query(sqlCommand.selectAllAtc,[pageSize,start], function (err, rows) {
+    db.queryArgs(sqlCommand.selectAllAtc,[pageSize,start], function (err, rows) {
+        var totalPage;
         if (!err) {
+            totalPage = db.query(sqlCommand.getAtcCount,function(err,num){
+                console.log(num);
+                return num.count;
+            });
             result = {
                 code: 200,
                 msg: 'success',
                 articleList: rows,
+                currentPage:currentPage,
+                totalPage:totalPage
+                // pageSize:pageSize
             };
             console.log(result);
-
         } else {
             result = {
                 code: 201,

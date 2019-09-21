@@ -26,30 +26,66 @@ $(document).ready(function () {
             $(".item-name").eq(idx).addClass("active");
             $(".content").removeClass("show");
             $(".content").eq(idx).addClass("show");
-        //    根据当前选中的nav响应显示页面
-            $.ajax({
-                url:'/userStatus',
-                type:'GET',
-                data:{index:idx+1},
-                dataType:'JSON',
-                success:function (res) {
-                    console.log("成功");
-                    console.log(res);
-                    // console.log((res.articleList)[1].content);
-                    var context = {article: res.articleList};
-                    var html = template('model',context);
-                    $('#article-list').html(html);
-                },
-                error:function (res) {
-                    console.log("失败:" + res);
-                    // console.log(res);
-                },
-                complete:function (res) {
-                    console.log("完成");
-                    // console.log(res);
-                }
-            })
+
         });
+    })
+});
+
+$('#my-article').click(function () {
+    //    根据当前选中的nav响应显示页面
+    $.ajax({
+        url:'/showArticleList',
+        type:'GET',
+        dataType:'JSON',
+        success:function (res) {
+            console.log("成功");
+            console.log(res);
+            // console.log((res.articleList)[1].content);
+            // if(res.index === '2'){
+                var context = {article: res.articleList};
+                var html = template('model',context);
+                $('#article-list').html(html);
+                $(".pagination").pagination({
+                    currentPage:res.currentPage,   // 当前页
+                    // totalPage: Math.ceil(res.length / 4), //总页数
+                    totalPage:res.totalPage,
+                    isShow: true, //是否显示
+                    count: 4, // 每次显示的页码数
+                    homePageText: "首页",
+                    endPageText: "尾页",
+                    prevPageText: "上一页",
+                    nextPageText: "下一页",
+                    callback: function (tempPage) { //当点击之后的回调函数，current为当前页码
+                        $(".ui-pagination-page-item").click(function () {
+                            tempPage = this.getAttribute("data-current")-1;
+                            // console.log(tempPage)
+                            // showProject(tempPage);
+                            $.ajax({
+                                url:'/showArticleList',
+                                type:'GET',
+                                dataType:'JSON',
+                                data:{
+                                    page:tempPage
+                                },
+                                success:function (res) {
+                                    var context = {article: res.articleList};
+                                    var html = template('model',context);
+                                    $('#article-list').html(html);
+                                }
+                            })
+                        })
+                    }
+                });
+            // }
+        },
+        error:function (res) {
+            console.log("失败:" + res);
+            // console.log(res);
+        },
+        complete:function (res) {
+            console.log("完成");
+            // console.log(res);
+        }
     })
 });
 

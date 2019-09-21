@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href="../../public/modules/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../public/stylesheets/manager-index.css">
+    <!--<link rel="stylesheet" href="../../public/modules/jquery.fullPage.css">-->
     <!--<link rel="stylesheet" href="../../public/stylesheets/global.css">-->
 </head>
 <body>
@@ -22,7 +23,7 @@
         </div>
         <ul class="items">
             <li class="item"><a href="#" class="item-name active">访客动态</a></li>
-            <li class="item"><a href="#" class="item-name">我的文章</a></li>
+            <li class="item"><a href="#" class="item-name" id="my-article">我的文章</a></li>
             <li class="item"><a href="#" class="item-name">作品展示</a></li>
             <li class="item"><a href="#" class="item-name">资源下载</a></li>
         </ul>
@@ -40,6 +41,11 @@
     <div id="articles" class="content">
         <button class="btn btn-default write-article"><a href="/toEdit">添加</a></button>
         <div id="article-list"></div>
+        <!--分页框-->
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="pagination" style="display: flex;">
+            </div>
+        </div>
     </div>
     <div id="works" class="content">
         <p>3</p>
@@ -52,6 +58,7 @@
 <script src="../../public/modules/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="../../public/javascripts/manage.js"></script>
 <script src="../../public/modules/template-web.js"></script>
+<script src="../../public/modules/jquery.pagination.min.js"></script>
 <script type="text/template" id="model">
     {{each article}}
     <p>{{$value.title}}</p>
