@@ -54,6 +54,10 @@ function queryAllArticle(req, res, callback) {
             function (totalPage, cb) {
                 db.queryArgs(sqlCommand.selectAllAtc, [pageSize, start], function (err, rows) {
                     if (!err) {
+                        rows.forEach(item=>{
+                            item.time = utils.formatTime(item.time);
+                            item.tag = item.tag.split(',');
+                        });
                         result = {
                             code: 200,
                             msg: 'success',

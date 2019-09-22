@@ -66,6 +66,8 @@ $('#my-article').click(function () {
                             page: tempPage
                         },
                         success: function (res) {
+                            // res.articleList.tag = res.articleList.tag.split(',');
+                            // console.log(res.articleList.tag);
                             var context = {article: res.articleList};
                             var html = template('model', context);
                             $('#article-list').html(html);

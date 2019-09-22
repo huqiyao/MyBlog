@@ -43,9 +43,8 @@
         <button class="btn btn-default write-article"><a href="/toEdit">添加</a></button>
         <div id="article-list"></div>
         <!--分页框-->
-        <!--<div class="col-xs-12 col-sm-12 col-md-12">-->
-            <div class="pagination" id="pagination">
-            </div>
+        <div class="pagination" id="pagination">
+        </div>
         <!--</div>-->
     </div>
     <div id="works" class="content">
@@ -61,12 +60,19 @@
 <script src="../../public/modules/template-web.js"></script>
 <script src="../../public/modules/jquery.pagination.min.js"></script>
 <script type="text/template" id="model">
-    {{each article}}
-    <p>{{$value.title}}</p>
-    <p>{{$value.tag}}</p>
-    <p>{{@($value.content)}}</p>
-    <p>{{$value.time}}</p>
-    {{/each}}
+    <div class="article-item">
+        {{each article}}
+        <h4 style="display: inline-block">{{$value.title}}</h4>
+        <span>{{$value.time}}</span>
+        <p>{{@($value.content)}}</p>
+        <div>
+            {{each $value.tag value i}}
+            <span>{{value}}</span>
+            {{/each}}
+        </div>
+        <!--<p>{{$value.tag}}</p>-->
+        {{/each}}
+    </div>
 </script>
 </body>
 </html>
