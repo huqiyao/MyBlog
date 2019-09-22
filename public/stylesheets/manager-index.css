@@ -18,8 +18,9 @@ a:active, a:hover, a:visited, a:link {
     position: absolute;
     top: 0;
     right: 0;
-    min-height: 100%;
-    height: auto !important;
+    /*min-height: 100%;*/
+    /*height: auto !important;*/
+    height: 100%;
     background-color: #EAEAEA;
     width: 76%;
 }
@@ -160,15 +161,15 @@ a:active, a:hover, a:visited, a:link {
     width: 50%;
 }
 
-.item a:not(.active):hover::after{
+.item a:not(.active):hover::after {
     /*font-weight: bolder;*/
     color: black;
     /*background-image: linear-gradient(-270deg, #90F1E9 0%, #75ced5 100%);*/
-    background-image: linear-gradient(-270deg, #2B2B2B,black);
+    background-image: linear-gradient(-270deg, #2B2B2B, black);
     width: 100%;
 }
 
-.item a:not(.active)::after{
+.item a:not(.active)::after {
     content: "";
     display: block;
     width: 30%;
@@ -179,9 +180,10 @@ a:active, a:hover, a:visited, a:link {
     /*left: 0;*/
     transition: width 0.5s;
 }
-.item .active::after{
+
+.item .active::after {
     content: "";
-    background-image: linear-gradient(-270deg, #2B2B2B,black);
+    background-image: linear-gradient(-270deg, #2B2B2B, black);
     display: block;
     width: 100%;
     height: 2px;
@@ -190,29 +192,31 @@ a:active, a:hover, a:visited, a:link {
 }
 
 /*右侧显示内容*/
-.content{
+.content {
     position: absolute;
     top: 0;
     left: 6.5%;
     width: 87%;
-    background-color: #b2dba1;
-    min-height: 100%;
-    height: auto;
+    /*background-color: #b2dba1;*/
+    /*min-height: 100%;*/
+    height: 100%;
     display: none;
 }
-.show{
+
+.show {
     display: block;
 }
 
 /*写文章按钮*/
-.write-article{
+.write-article {
     /*border-radius: 100%;*/
     position: absolute;
     top: 0;
-    right:0;
+    right: 0;
     padding: 3px 4px;
 }
-.write-article::before{
+
+.write-article::before {
     content: "+";
     font-weight: 700;
     /*position: absolute;*/
@@ -220,11 +224,10 @@ a:active, a:hover, a:visited, a:link {
     /*margin-right: 2px;*/
     /*font-weight: 500;*/
 }
-.write-article a{
+
+.write-article a {
     color: black;
 }
-
-
 
 @media (min-width: 768px ) and (max-width: 992px) {
     .left-nav {
@@ -255,14 +258,16 @@ a:active, a:hover, a:visited, a:link {
         width: 50%;
         background: rgba(20, 20, 20, 0.9);
     }
+
     .navbar-toggle .icon-bar {
         display: block;
         width: 15px;
         height: 2px;
         border-radius: 1px;
     }
+
     .navbar-toggle {
-        padding: 7px ;
+        padding: 7px;
         display: block;
         background-color: ghostwhite;
     }
@@ -282,21 +287,30 @@ a:active, a:hover, a:visited, a:link {
     /*}*/
 }
 
-@media  (max-width: 432px){
+@media (max-width: 432px) {
     .navbar-toggle .icon-bar {
         width: 13px;
     }
+
     .navbar-toggle {
-        padding: 4px ;
+        padding: 4px;
     }
-    .content{
+
+    .content {
         left: 7%;
         width: 86%;
     }
-
 }
 
-
+/*分页框样式*/
+.pagination{
+    display: block;
+    position: absolute;
+    bottom: 6%;
+    width: 80%;
+    left: 10%;
+    text-align:center;
+}
 
 
 
