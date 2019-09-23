@@ -5,6 +5,7 @@ var sqlCommand = {
     // selectAllAtc:'SELECT SQL_CALC_FOUND_ROWS * from article limit ? offset ?',
     // getAtcCount:'SELECT FOUND_ROWS() as count'
     getAtcCount:'SELECT COUNT(id) as count FROM article',
+    deleteAtc:'delete from article where id = ?',
 
 };
 module.exports = sqlCommand;

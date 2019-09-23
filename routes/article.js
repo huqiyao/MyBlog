@@ -54,10 +54,12 @@ function queryAllArticle(req, res, callback) {
             function (totalPage, cb) {
                 db.queryArgs(sqlCommand.selectAllAtc, [pageSize, start], function (err, rows) {
                     if (!err) {
+                        var color = ["#b2dba1","#FFB6C1","#FFFACD","#87CEFA"];
                         rows.forEach(item=>{
                             item.time = utils.formatTime(item.time);
                             item.tag = item.tag.split(',');
-                            // item.bgColor = color[idx];
+                            var idx = Math.floor(Math.random()*4);
+                            item.bgColor = color[idx];
                         });
                         result = {
                             code: 200,
@@ -86,8 +88,29 @@ function queryAllArticle(req, res, callback) {
     );
 }
 
+function deleteArticle(req,res,next){
+    var param = req.params;
+    console.log("参数："+param);
+    db.queryArgs(sqlCommand.deleteAtc,param.id,function(err,result){
+        if(!err){
+            result={
+                code:200,
+                msg:'success'
+            }
+        }else{
+            result={
+                code:201,
+                msg:'err:'+err
+            }
+
+        }
+        db.doReturn(res,result);
+    });
+}
+
 
 module.exports = {
     addArticle: addArticle,
-    queryAllArticle: queryAllArticle
+    queryAllArticle: queryAllArticle,
+    deleteArticle:deleteArticle
 }

@@ -25,4 +25,9 @@ router.post('/postArticle', function (req, res) {
     console.log(req.body);
     article.addArticle(req, res);
 });
+
+router.delete('/deleteArticle/:id',function (req,res) {
+    article.deleteArticle(req,res);
+});
+
 module.exports = router;

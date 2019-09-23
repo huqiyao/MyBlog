@@ -350,7 +350,11 @@ a:active, a:hover, a:visited, a:link {
 .article-body h1,.article-body h2,.article-body h3,.article-body h4,.article-body h5,.article-body h6{
     margin-top: 0;
     margin-bottom: 0;
-    background-color: lightpink;
+    /*background-color: lightpink;*/
+}
+
+.article-head{
+    background-color: #e7c3c3;
 }
 
 

@@ -122,3 +122,22 @@ $(document).ready(function () {
 //     // });
 //     console.log($('.article-item'));
 // });
+// var elem = $('.article-item');
+// console.log(elem)
+function deleteArticle(id) {
+    // console.log(id);
+    $.ajax({
+        url:'/deleteArticle/' + id,
+        type:'delete',
+        success:function (res) {
+            console.log("删除成功：");
+            console.log(res);
+        },
+        error:function (res) {
+            console.log("删除失败");
+        },
+        complete:function (res) {
+            console.log("完成：" + res);
+        }
+    })
+}

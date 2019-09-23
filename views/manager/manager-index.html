@@ -74,6 +74,8 @@
             {{each $value.tag value i}}
             <span>{{value}}</span>
             {{/each}}
+            <button onclick="deleteArticle('{{$value.id}}')">删除</button>
+            <button>修改</button>
         </div>
     </div>
     {{/each}}
