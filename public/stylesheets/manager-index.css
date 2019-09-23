@@ -212,6 +212,7 @@ a:active, a:hover, a:visited, a:link {
     /*border-radius: 100%;*/
     position: absolute;
     top: 0;
+    width: 4.5rem;
     right: 0;
     padding: 3px 4px;
 }
@@ -219,10 +220,6 @@ a:active, a:hover, a:visited, a:link {
 .write-article::before {
     content: "+";
     font-weight: 700;
-    /*position: absolute;*/
-    /*left: 1px;*/
-    /*margin-right: 2px;*/
-    /*font-weight: 500;*/
 }
 
 .write-article a {
@@ -306,11 +303,54 @@ a:active, a:hover, a:visited, a:link {
 .pagination{
     display: block;
     position: absolute;
-    bottom: 6%;
-    width: 80%;
-    left: 10%;
+    bottom: 2%;
+    width: 100%;
+    /*left: 10%;*/
+    /*background-color: yellow;*/
     text-align:center;
 }
 
+/*article列表*/
+#article-list{
+    height: 84%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /*background-color: #b2dba1;*/
+    /*align-items: center;*/
+    justify-content: space-around;
+    position: absolute;
+    top: 3rem;
+}
+.article-item{
+    background-color: white;
+    border-radius: 5px;
+    height: 30%;
+    overflow: hidden;
+}
+.article-head{
+    width: 100%;
+    height: 30%;
+    position: relative;
+}
+/*.article-head::after{*/
+    /*content: '';*/
+    /*height: 1px;*/
+    /*width: 100%;*/
+    /*background-color: black;*/
+    /*position: absolute;*/
+    /*bottom: 0;*/
+/*}*/
+.article-body{
+    height: 50%;
+}
+.article-foot{
+    height: 20%;
+}
+.article-body h1,.article-body h2,.article-body h3,.article-body h4,.article-body h5,.article-body h6{
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: lightpink;
+}
 
 

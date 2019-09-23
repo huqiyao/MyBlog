@@ -110,3 +110,15 @@ $(document).ready(function () {
         });
     });
 });
+
+
+// 改变article-head的背景颜色
+// $(document).ready(function () {
+//     // $('.article-head').each(function () {
+//     //     var color = ["#b2dba1","#FFB6C1","#FFFACD","#87CEFA"];
+//     //     var idx = Math.floor(Math.random()*4);
+//     //     console.log($(this));
+//     //     // $(this).style.backgroundColor = color[idx];
+//     // });
+//     console.log($('.article-item'));
+// });

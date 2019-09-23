@@ -60,19 +60,23 @@
 <script src="../../public/modules/template-web.js"></script>
 <script src="../../public/modules/jquery.pagination.min.js"></script>
 <script type="text/template" id="model">
+
+    {{each article}}
     <div class="article-item">
-        {{each article}}
-        <h4 style="display: inline-block">{{$value.title}}</h4>
-        <span>{{$value.time}}</span>
-        <p>{{@($value.content)}}</p>
-        <div>
+        <div class="article-head">
+            <h4 style="display: inline-block">{{$value.title}}</h4>
+            <span>{{$value.time}}</span>
+        </div>
+        <div class="article-body" >
+            {{@($value.content)}}
+        </div>
+        <div class="article-foot" >
             {{each $value.tag value i}}
             <span>{{value}}</span>
             {{/each}}
         </div>
-        <!--<p>{{$value.tag}}</p>-->
-        {{/each}}
     </div>
+    {{/each}}
 </script>
 </body>
 </html>

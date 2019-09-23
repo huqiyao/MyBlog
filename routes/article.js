@@ -57,6 +57,7 @@ function queryAllArticle(req, res, callback) {
                         rows.forEach(item=>{
                             item.time = utils.formatTime(item.time);
                             item.tag = item.tag.split(',');
+                            // item.bgColor = color[idx];
                         });
                         result = {
                             code: 200,
