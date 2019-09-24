@@ -1,3 +1,5 @@
+var pageNum;
+
 /**
  *  移动端导航栏 隐藏/显示 效果
  * */
@@ -88,7 +90,9 @@ $('#my-article').click(function () {
     })
 });
 
-// 获得复选框选中的值
+/**
+ * 获得复选框选中的值
+ **/
 $(document).ready(function () {
     var arr = [];
     $("input[type='checkbox']").each(function (idx) {
@@ -124,7 +128,7 @@ $(document).ready(function () {
 // });
 // var elem = $('.article-item');
 // console.log(elem)
-function deleteArticle(id) {
+function deleteArticle(id,index) {
     // console.log(id);
     $.ajax({
         url:'/deleteArticle/' + id,
@@ -132,6 +136,37 @@ function deleteArticle(id) {
         success:function (res) {
             console.log("删除成功：");
             console.log(res);
+            console.log(index);
+            // console.log($('.article-item').eq(index));
+            // $('.article-item').eq(index).remove();
+            // console.log($('.ui-pagination-page-item ',$('.active')));
+            var page = $(".ui-pagination-page-item.active").attr('data-current')?$(".ui-pagination-page-item.active").attr('data-current'):1;
+            console.log(page);
+            $.ajax({
+                url: '/showArticleList',
+                type: 'GET',
+                dataType: 'JSON',
+                data: {
+                    page: page
+                },
+                success: function (res) {
+                    var context = {article: res.articleList};
+                    var html = template('model', context);
+                    $('#article-list').html(html);
+                    $(".pagination").pagination({
+                        currentPage: res.currentPage,   // 当前页
+                        // totalPage: Math.ceil(res.length / 4), //总页数
+                        totalPage: res.totalPage,
+                        isShow: true, //是否显示
+                        count: res.totalPage < 5 ? res.totalPage : 5, // 每次显示的页码数
+                        coping: true,
+                        homePageText: "首页",
+                        endPageText: "尾页",
+                        prevPageText: "上一页",
+                        nextPageText: "下一页"
+                    });
+                }
+            })
         },
         error:function (res) {
             console.log("删除失败");
