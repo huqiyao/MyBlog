@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改文章</title>
+    <link rel="stylesheet" href="../../public/editor.md/css/editormd.min.css"/>
+    <link href="../../public/modules/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+        form {
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .form-group{
+            width:90%;
+            margin-bottom: 5px;
+        }
+        .check-box{
+            color: whitesmoke;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+<form class="form-horizontal" role="form" action="" method="post">
+    <div class="form-group">
+        <input type="text" class="form-control " id="article-title" placeholder="请输入标题" name="title" value="<%=thisArticle[0].title%>">
+    </div>
+    <div class="check-box">
+        <label class="checkbox-inline">
+            <input type="checkbox" id="inlineCheckbox1" >css/html</label>
+        <label class="checkbox-inline">
+            <input type="checkbox" id="inlineCheckbox2">JavaScript</label>
+        <label class="checkbox-inline">
+            <input type="checkbox" id="inlineCheckbox3">Node.js</label>
+        <label class="checkbox-inline">
+            <input type="checkbox" id="inlineCheckbox4">Vue</label>
+        <label class="checkbox-inline">
+            <input type="checkbox" id="inlineCheckbox5">算法</label>
+        <label class="checkbox-inline">
+            <input type="checkbox" id="inlineCheckbox6">备战</label>
+        <label class="checkbox-inline">
+            <input type="checkbox" id="inlineCheckbox7">问题</label>
+        <input type="hidden" name="tags" id="checkbox-value"/>
+    </div>
+    <div id="editor">
+        <textarea style="display:none;" id="article-content" value="<%=thisArticle[0].source_code.split(',')%>"></textarea>
+        <textarea id="editor-html-code" name="editor-html-code" style="display:none;"></textarea>
+    </div>
+    <button type="submit" class="btn btn-success btn-sm">发表</button>
+</form>
+<script src="../../public/modules/jquery-3.3.1.min.js"></script>
+<script src="../../public/modules/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="../../public/editor.md/editormd.min.js"></script>
+<script src="../../public/javascripts/manage.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var editor = editormd("editor", {
+            width: "90%",
+            height: "75%",
+            theme: "white",
+            path: "../../public/editor.md/lib/",
+            saveHTMLToTextarea: true, // 保存 HTML 到 Textarea
+            toolbarAutoFixed: true,//工具栏自动固定定位的开启与禁用
+            syncScrolling: "single",
+        });
+    });
+</script>
+</body>
+</html>

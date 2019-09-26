@@ -30,4 +30,14 @@ router.delete('/deleteArticle/:id',function (req,res) {
     article.deleteArticle(req,res);
 });
 
+router.get('/manager/toUpdate/:id',function (req,res) {
+    article.getThisArticle(req,res,function (e) {
+        console.log("e是：");
+        console.log(e);
+        res.render('manager/update',e);
+        // res.send(e);
+    })
+    // res.send(req.params.id);
+});
+
 module.exports = router;

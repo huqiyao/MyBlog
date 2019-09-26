@@ -10,7 +10,7 @@ function addArticle(req, res, next) {
     var param = req.body;
     console.log(param);
 
-    db.queryArgs(sqlCommand.insertAtc, [param.title, param.tags, param['editor-html-code']], function (err, result) {
+    db.queryArgs(sqlCommand.insertAtc, [param.title, param.tags, param['editor-html-code'], (param['editor-markdown-doc'])[0]], function (err, result) {
         if (!err) {
             result = {
                 code: 200,
@@ -46,19 +46,19 @@ function queryAllArticle(req, res, callback) {
             function (cb) {
                 db.query(sqlCommand.getAtcCount, function (err, rows) {
                     console.log(rows);
-                    totalPage = Math.ceil(rows[0].count/3);
-                    console.log("总页数："+totalPage);
+                    totalPage = Math.ceil(rows[0].count / 3);
+                    console.log("总页数：" + totalPage);
                     cb(null, totalPage);
                 })
             },
             function (totalPage, cb) {
                 db.queryArgs(sqlCommand.selectAllAtc, [pageSize, start], function (err, rows) {
                     if (!err) {
-                        var color = ["#b2dba1","#FFB6C1","#FFFACD","#87CEFA"];
-                        rows.forEach(item=>{
+                        var color = ["#b2dba1", "#FFB6C1", "#FFFACD", "#87CEFA"];
+                        rows.forEach(item => {
                             item.time = utils.formatTime(item.time);
                             item.tag = item.tag.split(',');
-                            var idx = Math.floor(Math.random()*4);
+                            var idx = Math.floor(Math.random() * 4);
                             item.bgColor = color[idx];
                         });
                         result = {
@@ -82,29 +82,59 @@ function queryAllArticle(req, res, callback) {
                 });
             }
         ],
-        function (err,ret) {
+        function (err, ret) {
             callback(ret);
         }
     );
 }
 
-function deleteArticle(req,res,next){
+function deleteArticle(req, res, next) {
     var param = req.params;
-    console.log("参数："+param);
-    db.queryArgs(sqlCommand.deleteAtc,param.id,function(err,result){
-        if(!err){
-            result={
-                code:200,
-                msg:'success'
+    console.log("参数：" + param);
+    db.queryArgs(sqlCommand.deleteAtc, param.id, function (err, result) {
+        if (!err) {
+            result = {
+                code: 200,
+                msg: 'success'
             }
-        }else{
-            result={
-                code:201,
-                msg:'err:'+err
+        } else {
+            result = {
+                code: 201,
+                msg: 'err:' + err
             }
 
         }
-        db.doReturn(res,result);
+        db.doReturn(res, result);
+    });
+}
+
+
+function getThisArticle(req, res, callback) {
+    var param = req.params;
+    var result = {};
+    console.log(param);
+    db.queryArgs(sqlCommand.getThisAct,param.id, function (err, rows) {
+        if (!err) {
+            var source_code = [];
+            source_code.push(rows[0].source_code);
+            source_code.push(rows[0].source_code);
+            rows[0].source_code= source_code.toString();
+            console.log(rows[0].source_code.split(','));
+            result = {
+                code: 200,
+                msg: 'success',
+                thisArticle: rows,
+            };
+            console.log(result);
+        } else {
+            result = {
+                code: 201,
+                msg: 'err:' + err,
+            }
+
+        }
+        // callback(null,result); 导致报错
+        callback(result);
     });
 }
 
@@ -112,5 +142,6 @@ function deleteArticle(req,res,next){
 module.exports = {
     addArticle: addArticle,
     queryAllArticle: queryAllArticle,
-    deleteArticle:deleteArticle
+    deleteArticle: deleteArticle,
+    getThisArticle: getThisArticle
 }

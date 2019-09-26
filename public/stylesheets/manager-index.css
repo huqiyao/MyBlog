@@ -332,6 +332,13 @@ a:active, a:hover, a:visited, a:link {
     width: 100%;
     height: 30%;
     position: relative;
+    display: flex;
+    flex-direction:row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap:wrap;
+    background-color: #DEE1E6;
+    padding: 0 1rem;
 }
 /*.article-head::after{*/
     /*content: '';*/
@@ -342,19 +349,61 @@ a:active, a:hover, a:visited, a:link {
     /*bottom: 0;*/
 /*}*/
 .article-body{
+    width: 100%;
     height: 50%;
+    position: relative;
 }
 .article-foot{
+    padding: 0 1rem;
     height: 20%;
+    display: flex;
+    flex-direction:row;
+    justify-content: space-between;
 }
 .article-body h1,.article-body h2,.article-body h3,.article-body h4,.article-body h5,.article-body h6{
     margin-top: 0;
     margin-bottom: 0;
+    /*display: flex;*/
     /*background-color: lightpink;*/
 }
 
-.article-head{
-    background-color: #e7c3c3;
+
+/*.article-head{*/
+    /*!*background-color: #e7c3c3;*!*/
+    /**/
+/*}*/
+
+/*详情页*/
+.toDetail{
+    cursor: pointer;
+    color: black;
 }
+
+.article-body p{
+    padding: 0.1rem 1rem;
+    display:-webkit-box;
+    box-orient:verticle;
+    line-clamp:3;
+    overflow:hidden;
+    position:relative;
+    line-height:25px;
+    max-height:50px;
+    vertical-align: center;
+    word-break: break-all;
+    text-overflow: ellipsis;
+}
+
+.article-body p::after{
+    content:'...';
+    font-weight: bolder;
+    position:absolute;
+    right:0;
+    bottom:0;
+}
+
+/*.article-foot span,.article-foot div{*/
+    /*align-items: flex-end;*/
+/*}*/
+
 
 

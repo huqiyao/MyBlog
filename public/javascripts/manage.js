@@ -1,4 +1,4 @@
-var pageNum;
+// var pageNum;
 
 /**
  *  移动端导航栏 隐藏/显示 效果
@@ -154,11 +154,10 @@ function deleteArticle(id,index) {
                     var html = template('model', context);
                     $('#article-list').html(html);
                     $(".pagination").pagination({
-                        currentPage: res.currentPage,   // 当前页
-                        // totalPage: Math.ceil(res.length / 4), //总页数
+                        currentPage: res.currentPage,
                         totalPage: res.totalPage,
-                        isShow: true, //是否显示
-                        count: res.totalPage < 5 ? res.totalPage : 5, // 每次显示的页码数
+                        isShow: true,
+                        count: res.totalPage < 5 ? res.totalPage : 5,
                         coping: true,
                         homePageText: "首页",
                         endPageText: "尾页",

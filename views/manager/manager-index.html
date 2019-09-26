@@ -64,18 +64,20 @@
     {{each article item index}}
     <div class="article-item">
         <div class="article-head">
-            <h4 style="display: inline-block">{{item.title}}</h4>
+            <h4 style="display: inline-block"><a class="toDetail" href="">{{item.title}}</a></h4>
             <span>{{item.time}}</span>
         </div>
-        <div class="article-body" >
-            {{@(item.content)}}
+        <div class="article-body">
+            <p>{{@(item.content)}}</p>
         </div>
-        <div class="article-foot" >
+        <div class="article-foot">
             {{each item.tag}}
             <span>{{$value}}</span>
             {{/each}}
-            <button onclick="deleteArticle('{{item.id}}','{{index}}')">删除</button>
-            <button>修改</button>
+            <div>
+                <button onclick="deleteArticle('{{item.id}}','{{index}}')">删除</button>
+                <a href="/manager/toUpdate/{{item.id}}">修改</a>
+            </div>
         </div>
     </div>
     {{/each}}
