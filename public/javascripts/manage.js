@@ -93,22 +93,35 @@ $('#my-article').click(function () {
 /**
  * 获得复选框选中的值
  **/
+var arr = [];
 $(document).ready(function () {
-    var arr = [];
+    // console.log(($("input[type='checkbox']")[0].checked));
     $("input[type='checkbox']").each(function (idx) {
         // if($("input[type='checkbox']").eq(idx).checked === true && arr.indexOf($("input[type='checkbox']").eq(idx).parentNode.childNodes[2].textContent) === -1){
         //     console.log($("input[type='checkbox']").eq(idx).parentNode);
         //     arr.push($("input[type='checkbox']").eq(idx).parentNode.childNodes[2].textContent);
         // }
+        // console.log("元素是:");
+        console.log(this.checked);
+        if(this.checked===true){
+            arr.push(this.parentNode.childNodes[2].textContent)
+        }
         $("input[type='checkbox']").eq(idx).change(function () {
+            console.log("这个");
+            console.log(this);
+            var val = this.parentNode.childNodes[2].textContent;
             if (this.checked === true) {
-                var val = this.parentNode.childNodes[2].textContent;
                 // console.log(val);
                 if (arr.indexOf(val) === -1) {
                     arr.push(val);
                     console.log(arr);
                     $("#checkbox-value").attr('value', arr);
                     console.log($("#checkbox-value").attr('value'));
+                }
+            }else{
+                if(arr.indexOf(val) !== -1){
+                    arr.splice(arr.indexOf(val), 1);
+                    console.log(arr);
                 }
             }
         });
@@ -172,6 +185,39 @@ function deleteArticle(id,index) {
         },
         complete:function (res) {
             console.log("完成：" + res);
+        }
+    })
+}
+
+function updateArticle(id) {
+    console.log(id);
+    var title = $('#article-title').attr('value');
+    var tag = arr.toString();
+    var content =  $("[name='editor-html-code']")[0].innerText;
+    var source_code = $("[name='editor-markdown-doc']")[0].innerText;
+        // editor-markdown-doc
+    console.log(tag);
+    console.log(title);
+    console.log(content);
+    console.log(source_code);
+    $.ajax({
+        url:'/updateArticle/' + id,
+        type: 'POST',
+        dataType: 'JSON',
+        data: {
+            title:title,
+            tag:tag,
+            content:content,
+            source_code:source_code
+        },
+        success:function (res) {
+            console.log(res);
+        },
+        error:function () {
+            console.log("失败啦");
+        },
+        complete:function (res) {
+            console.log("完成啦");
         }
     })
 }

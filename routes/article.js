@@ -11,6 +11,7 @@ function addArticle(req, res, next) {
     console.log(param);
 
     db.queryArgs(sqlCommand.insertAtc, [param.title, param.tags, param['editor-html-code'], (param['editor-markdown-doc'])[0]], function (err, result) {
+        // param['editor-markdown-doc'] 报错：Column count doesn't match value count at row 1
         if (!err) {
             result = {
                 code: 200,
@@ -113,13 +114,10 @@ function getThisArticle(req, res, callback) {
     var param = req.params;
     var result = {};
     console.log(param);
-    db.queryArgs(sqlCommand.getThisAct,param.id, function (err, rows) {
+    db.queryArgs(sqlCommand.getThisAtc, param.id, function (err, rows) {
         if (!err) {
-            var source_code = [];
-            source_code.push(rows[0].source_code);
-            source_code.push(rows[0].source_code);
-            rows[0].source_code= source_code.toString();
-            console.log(rows[0].source_code.split(','));
+            // console.log(rows[0].source_code);
+            // rows[0].source_code = rows[0].source_code.split(',');
             result = {
                 code: 200,
                 msg: 'success',
@@ -138,10 +136,32 @@ function getThisArticle(req, res, callback) {
     });
 }
 
+function updateArticle(req, res) {
+    // let find = true;
+    var id = req.params.id;
+    var param = req.body;
+    var result = {};
+    db.queryArgs(sqlCommand.updateAtc, [param.title, param.tag, param.content, param.source_code, id], function (err, rows) {
+        if (!err) {
+            result = {
+                code: 200,
+                msg: 'success',
+            }
+        } else {
+            result = {
+                code: 201,
+                msg: 'err:' + err
+            }
+        }
+        // callback(result);
+        res.send(result);
+    });
+}
 
 module.exports = {
     addArticle: addArticle,
     queryAllArticle: queryAllArticle,
     deleteArticle: deleteArticle,
-    getThisArticle: getThisArticle
+    getThisArticle: getThisArticle,
+    updateArticle: updateArticle
 }

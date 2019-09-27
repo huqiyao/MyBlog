@@ -40,4 +40,7 @@ router.get('/manager/toUpdate/:id',function (req,res) {
     // res.send(req.params.id);
 });
 
+router.post('/updateArticle/:id',function (req,res) {
+    article.updateArticle(req,res);
+});
 module.exports = router;

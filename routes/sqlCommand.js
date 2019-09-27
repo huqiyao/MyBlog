@@ -6,6 +6,7 @@ var sqlCommand = {
     // getAtcCount:'SELECT FOUND_ROWS() as count'
     getAtcCount:'SELECT COUNT(id) as count FROM article',
     deleteAtc:'delete from article where id = ?',
-    getThisAct:'select * from article where id = ?'
+    getThisAtc:'select * from article where id = ?',
+    updateAtc:'update article set title = ?, tag = ?, content = ?, source_code = ? where id = ?',
 };
 module.exports = sqlCommand;
