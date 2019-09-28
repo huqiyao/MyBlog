@@ -29,12 +29,12 @@ function addArticle(req, res, next) {
 }
 
 
-function queryAllArticle(req, res, callback) {
+function queryAllArticle(req,res,page,size,callback) {
     var param = req.query || req.params;
     var result = {};
     // 获取前台页面传过来的参数
-    var currentPage = parseInt(param.page ? param.page : 1);// 页码
-    var pageSize = parseInt(param.num ? param.num : 3); // 显示得条数
+    var currentPage = parseInt(param.page ? param.page : page);// 页码
+    var pageSize = parseInt(param.num ? param.num : size); // 显示得条数
     var start = (currentPage - 1) * pageSize;
 
     var totalPage;
@@ -47,7 +47,7 @@ function queryAllArticle(req, res, callback) {
             function (cb) {
                 db.query(sqlCommand.getAtcCount, function (err, rows) {
                     console.log(rows);
-                    totalPage = Math.ceil(rows[0].count / 3);
+                    totalPage = Math.ceil(rows[0].count / size);
                     console.log("总页数：" + totalPage);
                     cb(null, totalPage);
                 })

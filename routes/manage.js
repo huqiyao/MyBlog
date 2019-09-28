@@ -6,15 +6,7 @@ var router = express.Router();
 router.get('/showArticleList', function (req, res) {
     // console.log(req);
     console.log(req.query);
-    // if(req.query.index === '2'){
-    //     article.queryAllArticle(req,res,function (ret) {
-    //         ret.index = req.query.index;
-    //         res.send(ret);
-    //     });
-    // }else{
-    //     res.send("好像不对欸");
-    // }
-    article.queryAllArticle(req, res, function (ret) {
+    article.queryAllArticle(req, res,1,3, function (ret) {
         res.send(ret);
     });
 });

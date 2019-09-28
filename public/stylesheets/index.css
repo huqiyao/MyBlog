@@ -2,6 +2,10 @@
 .login-box {
     border-top: 7px solid #337AB7;
 }
+#myLogin{
+    z-index: 10000;
+}
+
 
 /*按钮样式*/
 .btn {
@@ -216,3 +220,15 @@
     }
 }
 
+
+
+/*分页框样式*/
+.pagination{
+    display: block;
+    position: absolute;
+    bottom: 1%;
+    width: 100%;
+    /*left: 10%;*/
+    /*background-color: yellow;*/
+    text-align:center;
+}

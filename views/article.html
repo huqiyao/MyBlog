@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: 100%;overflow: hidden">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,10 +7,9 @@
     <link href="../public/modules/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../public/stylesheets/index.css">
     <link rel="stylesheet" href="../public/stylesheets/global.css">
-    <link rel="stylesheet" href="../public/modules/jquery.fullPage.css">
-
+    <link rel="stylesheet" href="../public/modules/jquery.pagination.css">
 </head>
-<body>
+<body style="height: 100%">
 <nav class="nav navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -28,8 +27,8 @@
         </div>
         <div id="menu" class="collapse navbar-collapse navbar-right">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">我的首页</a></li>
-                <li><a href="/showArticle">技术博客</a></li>
+                <li><a href="/">我的首页</a></li>
+                <li class="active"><a href="#">技术博客</a></li>
                 <li><a href="#">作品展示</a></li>
                 <li><a href="#">资源下载</a></li>
             </ul>
@@ -64,47 +63,67 @@
                     <button type="submit" class="btn btn-primary btn-sm">登陆</button>
                 </form>
             </div>
-            <!--<div class="modal-footer">-->
-            <!--<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>-->
-            <!--<button type="submit" class="btn btn-primary">登陆</button>-->
-            <!--</div>-->
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
-<div id="fullPage" class="fullpage-wrapper">
-    <div id="p1" class="section active " style="background-color: #fff">
-        <div class="intro">
-            <h2 class="intro aboutMe">我</h2>
-            <h2 class="intro icon">?</h2>
-        </div>
-        <ul id="tags" class="tags">
-            <% for(var tag of tags){ %>
-            <li class="tag"><span><%=tag%></span></li>
-            <% } %>
-        </ul>
-        <div class="find-more"></div>
-    </div>
-    <div class="section" style="background-color: #3c763d">
-        <form action="/leaveWord" method="post">
-            <input name="content" placeholder="请输入内容" type="text">
-            <input name="email" placeholder="请输入邮箱" type="text">
-            <button type="submit">发表</button>
-        </form>
-    </div>
-    <div class="section" style="background-color: pink">page_3</div>
-    <div class="section" style="background-color: yellow">page_4</div>
-</div>
+<div style="background-color: darkseagreen;height: 100%;width: 100%" id="content">
+    <% for (var i in articleList){%>
+    <%=articleList[i].id%>
+    <%}%>
 
+</div>
+<!--分页框-->
+<div class="pagination" id="pagination" >
+</div>
 <script src="../public/modules/jquery-3.3.1.min.js"></script>
 <script src="../public/modules/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<script src="../public/modules/jquery.fullPage.js"></script>
-<script src="../public/javascripts/index.js"></script>
+<script src="../public/modules/jquery.pagination.min.js"></script>
+<script src="../public/modules/template-web.js"></script>
+<!--<script src="../public/javascripts/index.js"></script>-->
 <script>
-    $(document).ready(function() {
-        $('#fullPage').fullpage({
-            resize: false, // resize窗口缩放功能，根据浏览器窗口的大小改变body的font-size
-        });
+    $(".pagination").pagination({
+        currentPage: parseInt('<%=currentPage%>'),   // 当前页
+        // totalPage: Math.ceil(res.length / 4), //总页数
+        totalPage: parseInt('<%=totalPage%>'),
+        isShow: true, //是否显示
+        count: '<%=totalPage%>' < 5 ? '<%=totalPage%>' : 5, // 每次显示的页码数
+        coping: true,
+        homePageText: "首页",
+        endPageText: "尾页",
+        prevPageText: "上一页",
+        nextPageText: "下一页",
+        callback: function (tempPage) {
+            console.log(tempPage);
+            $.ajax({
+                url: '/showArticle?' + "page=" + tempPage,
+                type: 'GET',
+                dataType: 'JSON',
+                // data: {
+                //     page: tempPage
+                // },
+                success: function (res) {
+                    // res.articleList.tag = res.articleList.tag.split(',');
+                    // console.log(res.articleList.tag);
+                    var context = {article: res.articleList};
+                    var html = template('model', context);
+                    $('#content').html(html);
+                    console.log(res);
+                },
+                error:function (res) {
+                    console.log("失败了");
+                    console.log(res.code);
+                },
+                complete:function (res) {
+                    console.log("完成了");
+                }
+            })
+        }
     });
+</script>
+<script type="text/template" id="model">
+    {{each article item index}}
+        <p>{{item.id}}</p>
+    {{/each}}
 </script>
 </body>
 </html>

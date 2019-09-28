@@ -61,12 +61,12 @@ $('#my-article').click(function () {
                 callback: function (tempPage) {
                     console.log(tempPage);
                     $.ajax({
-                        url: '/showArticleList',
+                        url: '/showArticleList?' + "page=" + tempPage,
                         type: 'GET',
                         dataType: 'JSON',
-                        data: {
-                            page: tempPage
-                        },
+                        // data: {
+                        //     page: tempPage
+                        // },
                         success: function (res) {
                             // res.articleList.tag = res.articleList.tag.split(',');
                             // console.log(res.articleList.tag);
