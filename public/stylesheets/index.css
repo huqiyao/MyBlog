@@ -232,3 +232,18 @@
     /*background-color: yellow;*/
     text-align:center;
 }
+
+
+#content{
+    display: flex;
+    flex-direction: column;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:flex-start;
+
+}
+
+.article-item{
+    background-color: #e7c3c3;
+    width: 40%;
+}

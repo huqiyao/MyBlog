@@ -68,12 +68,26 @@
 </div>
 <div style="background-color: darkseagreen;height: 100%;width: 100%" id="content">
     <% for (var i in articleList){%>
-    <%=articleList[i].id%>
+    <div class="article-item">
+        <div class="article-head">
+            <h4 style="display: inline-block"><a class="toDetail" href=""><%=articleList[i].title%></a></h4>
+            <span><%=articleList[i].time%></span>
+        </div>
+        <div class="article-body">
+            <p><%-articleList[i].content%></p>
+        </div>
+        <div class="article-foot">
+            <% for (var j in articleList[i].tag){%>
+            <!--{{each item.tag}}-->
+            <span><%=articleList[i].tag[j]%></span>
+            <!--{{/each}}-->
+            <%}%>
+        </div>
+    </div>
     <%}%>
-
 </div>
 <!--分页框-->
-<div class="pagination" id="pagination" >
+<div class="pagination" id="pagination">
 </div>
 <script src="../public/modules/jquery-3.3.1.min.js"></script>
 <script src="../public/modules/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
@@ -98,22 +112,17 @@
                 url: '/showArticle?' + "page=" + tempPage,
                 type: 'GET',
                 dataType: 'JSON',
-                // data: {
-                //     page: tempPage
-                // },
                 success: function (res) {
-                    // res.articleList.tag = res.articleList.tag.split(',');
-                    // console.log(res.articleList.tag);
                     var context = {article: res.articleList};
                     var html = template('model', context);
                     $('#content').html(html);
                     console.log(res);
                 },
-                error:function (res) {
+                error: function (res) {
                     console.log("失败了");
                     console.log(res.code);
                 },
-                complete:function (res) {
+                complete: function (res) {
                     console.log("完成了");
                 }
             })
@@ -122,7 +131,20 @@
 </script>
 <script type="text/template" id="model">
     {{each article item index}}
-        <p>{{item.id}}</p>
+    <div class="article-item">
+        <div class="article-head">
+            <h4 style="display: inline-block"><a class="toDetail" href="">{{item.title}}</a></h4>
+            <span>{{item.time}}</span>
+        </div>
+        <div class="article-body">
+            <p>{{@(item.content)}}</p>
+        </div>
+        <div class="article-foot">
+            {{each item.tag}}
+            <span>{{$value}}</span>
+            {{/each}}
+        </div>
+    </div>
     {{/each}}
 </script>
 </body>
