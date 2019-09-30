@@ -70,7 +70,7 @@
     <% for (var i in articleList){%>
     <div class="article-item">
         <div class="article-head">
-            <h4 style="display: inline-block"><a class="toDetail" href=""><%=articleList[i].title%></a></h4>
+            <h4 style="display: inline-block"><a class="toDetail" href="/toArticleDetail/<%=articleList[i].id%>"><%=articleList[i].title%></a></h4>
             <span><%=articleList[i].time%></span>
         </div>
         <div class="article-body">
@@ -78,9 +78,7 @@
         </div>
         <div class="article-foot">
             <% for (var j in articleList[i].tag){%>
-            <!--{{each item.tag}}-->
             <span><%=articleList[i].tag[j]%></span>
-            <!--{{/each}}-->
             <%}%>
         </div>
     </div>
@@ -97,7 +95,6 @@
 <script>
     $(".pagination").pagination({
         currentPage: parseInt('<%=currentPage%>'),   // 当前页
-        // totalPage: Math.ceil(res.length / 4), //总页数
         totalPage: parseInt('<%=totalPage%>'),
         isShow: true, //是否显示
         count: '<%=totalPage%>' < 5 ? '<%=totalPage%>' : 5, // 每次显示的页码数
@@ -133,7 +130,7 @@
     {{each article item index}}
     <div class="article-item">
         <div class="article-head">
-            <h4 style="display: inline-block"><a class="toDetail" href="">{{item.title}}</a></h4>
+            <h4 style="display: inline-block"><a class="toDetail" href="/toArticleDetail/{{item.id}}">{{item.title}}</a></h4>
             <span>{{item.time}}</span>
         </div>
         <div class="article-body">

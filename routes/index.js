@@ -49,6 +49,13 @@ router.get('/showArticle', function (req, res) {
     });
 });
 
-
+router.get('/toArticleDetail/:id',function (req,res) {
+    // res.send(req.params.id);
+    // res.render('article-detail',);
+    article.getThisArticle(req,res,function (e) {
+        console.log(e);
+        res.render('article-detail',e);
+    })
+});
 
 module.exports = router;

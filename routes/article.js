@@ -118,6 +118,9 @@ function getThisArticle(req, res, callback) {
         if (!err) {
             // console.log(rows[0].source_code);
             // rows[0].source_code = rows[0].source_code.split(',');
+            rows.forEach(item => {
+                item.time = utils.formatTime(item.time);
+            });
             result = {
                 code: 200,
                 msg: 'success',

@@ -2,10 +2,10 @@
 .login-box {
     border-top: 7px solid #337AB7;
 }
-#myLogin{
+
+#myLogin {
     z-index: 10000;
 }
-
 
 /*按钮样式*/
 .btn {
@@ -135,58 +135,62 @@
 /*}*/
 
 @keyframes bounce {
-    0%,30%,60%,90%,100%{
+    0%, 30%, 60%, 90%, 100% {
         animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
     }
-    0%{
-        transform: translate3d(-3000px,-3000px,0);
+    0% {
+        transform: translate3d(-3000px, -3000px, 0);
     }
-    30%{
-        transform: translate3d(0,100px,0);
+    30% {
+        transform: translate3d(0, 100px, 0);
     }
-    60%{
-        transform: translate3d(0,-68px,0);
+    60% {
+        transform: translate3d(0, -68px, 0);
     }
-    80%{
-        transform: translate3d(0,68px,0);
+    80% {
+        transform: translate3d(0, 68px, 0);
     }
-    90%{
-        transform: translate3d(0,-50px,0);
+    90% {
+        transform: translate3d(0, -50px, 0);
     }
-    100%{
-        transform: translate3d(0,50px,0);
+    100% {
+        transform: translate3d(0, 50px, 0);
 
     }
 }
+
 @keyframes shake {
     0% {
         opacity: 0;
-        transform: translate3d(3000px,-3000px,0);
+        transform: translate3d(3000px, -3000px, 0);
     }
-    50%{
+    50% {
         opacity: 1;
-        transform:rotate(360deg);
+        transform: rotate(360deg);
     }
     100% {
         opacity: 1;
-        transform:rotate(-360deg) translate3d(0,0,0);
+        transform: rotate(-360deg) translate3d(0, 0, 0);
     }
 }
 
-.intro{
+.intro {
     font-weight: bolder;
 }
-.aboutMe{
+
+.aboutMe {
     /*opacity: 0;*/
     z-index: 100;
-    animation: bounce 1.3s cubic-bezier(.1,.25,.1,.25) forwards ;
+    animation: bounce 1.3s cubic-bezier(.1, .25, .1, .25) forwards;
     /*animation: fromRightBottom 0.8s 0.8s linear forwards;*/
 }
-.icon{
+
+.icon {
     opacity: 0;
     margin-left: 35px;
-    animation: bounce 1.3s cubic-bezier(.1,.25,.1,.25) forwards , shake 1s 0.8s cubic-bezier(.1,.25,.1,.25) forwards;
+    animation: bounce 1.3s cubic-bezier(.1, .25, .1, .25) forwards, shake 1s 0.8s cubic-bezier(.1, .25, .1, .25) forwards;
 }
+
 .tag:nth-child(2n+1) {
     opacity: 0;
     animation: fromRight 0.8s 2s linear forwards;
@@ -196,11 +200,12 @@
     opacity: 0;
     animation: fromLeft 0.8s 3s linear forwards;
 }
-.tag:nth-child(3n){
+
+.tag:nth-child(3n) {
     animation: fromRightBottom 0.5s 3.5s linear forwards;
 }
 
-.find-more{
+.find-more {
     position: absolute;
     bottom: 3px;
     /*left: 50%;*/
@@ -220,30 +225,51 @@
     }
 }
 
-
-
 /*分页框样式*/
-.pagination{
+.pagination {
     display: block;
     position: absolute;
-    bottom: 1%;
+    bottom: 0;
     width: 100%;
     /*left: 10%;*/
     /*background-color: yellow;*/
-    text-align:center;
+    text-align: center;
 }
 
-
-#content{
+#content {
     display: flex;
-    flex-direction: column;
-    flex-wrap:wrap;
-    justify-content:center;
-    align-items:flex-start;
-
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 8%;
+    padding: 30px;
+    /*padding: 40px;*/
+    /*align-content:flex-start*/
 }
 
-.article-item{
+@media (max-width: 1039px) {
+    #content{
+        margin-top: 10%;
+    }
+}
+
+@media (max-width: 785px) {
+    #content{
+        margin-top: 15%;
+    }
+}
+@media (max-width: 414px) {
+    #content{
+        margin-top: 22%;
+    }
+}
+
+
+
+
+.article-item {
     background-color: #e7c3c3;
     width: 40%;
+    border-radius: 5px;
 }
