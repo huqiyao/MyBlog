@@ -1,2 +1,14 @@
 # Qiyao' Blog
-- A simple project based on express
+- A Simple Blog Based On Node.js
+- Structure And Function:
+  - Visitor: 
+    - read and review my articles
+    - reply to others' comments
+    - applause for each article
+    - download author's resources(including PDF……)
+  - Manager
+    - CRUD
+    - reply to visitors
+    - upload resources
+    - write articles
+    - view user status
