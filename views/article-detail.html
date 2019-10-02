@@ -4,50 +4,247 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="../public/modules/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--<link rel="stylesheet" href="../public/stylesheets/index.css">-->
+    <!--<link rel="stylesheet" href="../public/stylesheets/global.css">-->
+    <style>
+        html {
+            min-height: 100%;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            background-color: #F0EEF5;
+        }
+
+        .form-horizontal .form-group {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .tool-bar {
+            position: fixed;
+            left: 0;
+            top: 20%;
+            height: 35%;
+            width: 6%;
+            background-color: yellow;
+        }
+
+        .article-detail {
+            width: 100%;
+            height: auto;
+            background-color: white;
+        }
+
+        .comment-area {
+            width: 100%;
+            height: auto;
+            background-color: white;
+        }
+    </style>
 </head>
 <body>
-<p><%=thisArticle[0].time%></p>
-
-<form class="form-horizontal" role="form" action="/leaveWord" method="post" onsubmit='return checkForm()'>
-    <div class="form-group">
-        <label for="content" class="col-sm-3 control-label">内容</label>
-        <div class="col-sm-9">
-            <input type="text" class="form-control" id="content" placeholder="请输入内容" name="content" onblur="firstPoint()">
-            <span id="point_1" style="height: 20px;width: 40%;border: 1px solid black;display: block"></span>
+<!--<p><%=thisArticle[0].time%></p>-->
+<div style="width: 80%;margin: 0 auto;">
+    <div class="article-detail">
+        <h3><%=thisArticle[0].title%></h3>
+        <span><%=thisArticle[0].time%></span>
+        <p><%-thisArticle[0].content%></p>
+    </div>
+    <div class="comment-area">
+        <form class="form-horizontal" role="form">
+            <div class="form-group col-xs-7">
+                <!--<label for="content" class="control-label col-lg-1">内容</label>-->
+                <div>
+                    <input type="text" class="form-control" id="content" placeholder="想添加个评论?" name="content"
+                           onblur="firstPoint(this)">
+                    <span id="point_1" style="height: 20px;width: 100%;display: block"></span>
+                </div>
+            </div>
+            <div class="form-group col-xs-4">
+                <!--<label for="email" class="control-label col-lg-1">邮箱</label>-->
+                <div>
+                    <input type="text" class="form-control" id="email" placeholder="请输入邮箱" name="email"
+                           onblur="secondPoint(this)">
+                    <span id="point_2" style="height: 20px;width: 100%;border: 1px solid black;display: block"></span>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm col-xs-1" onclick="postComment()">发表</button>
+        </form>
+        <div class="all-comment" id="all-comment">
+            <!--<div></div>-->
         </div>
     </div>
-    <div class="form-group">
-        <label for="email" class="col-sm-3 control-label">邮箱</label>
-        <div class="col-sm-9">
-            <input type="text" class="form-control" id="email" placeholder="请输入邮箱" name="email" onblur="secondPoint()">
-            <span id="point_2" style="height: 20px;width: 40%;border: 1px solid black;display: block"></span>
-        </div>
-    </div>
-    <button type="submit" class="btn btn-primary btn-sm">发表</button>
-</form>
+</div>
+<div class="tool-bar"></div>
+<!--<form class="form-horizontal" role="form" action="/leaveWord" method="post" onsubmit='return checkForm()'>-->
+<!--模态框-->
+<div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h5 class="modal-title" id="commentModalLabel"></h5>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" style="height: auto">
+                    <div class="form-group">
+                        <div>
+                            <input type="text" class="form-control" id="content_new" placeholder="回复内容" name="content"
+                                   onblur="firstPoint(this)">
+                            <span id="point_3" style="height: 20px;width: 100%;display: block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div>
+                            <input type="text" class="form-control" id="email_new" placeholder="请输入邮箱" name="email"
+                                   onblur="secondPoint(this)">
+                            <span id="point_4"
+                                  style="height: 20px;width: 100%;display: block"></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary btn-sm">回复</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
 </body>
 <script src="../public/modules/jquery-3.3.1.min.js"></script>
 <script src="../public/modules/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="../public/modules/template-web.js"></script>
+<script type="text/template" id="model">
+    {{each comment item index}}
+    <div style="cursor: pointer" data-toggle="modal" data-target="#commentModal"
+         onclick="showCommentBox('{{item.email}}')">
+        {{if item.lastCmt_email === null}}
+        <span>{{item.email}}</span>
+        {{else}}
+        <span>{{item.email}}回复{{item.lastCmt_email}}</span>
+        {{/if}}
+        <span>{{item.time}}</span>
+        <p>{{item.content}}</p>
+    </div>
+    {{/each}}
+</script>
 <script>
-    // function checkForm(){
-    //     var flag;
-    //     if($('#content').value === ''){
-    //         flag = false;
-    //     }if($('#email').value === ''){
-    //
-    //     }
-    //     // return true;
-    // }
-    // $('#content').blur(function () {
-    //     if($(this).value === ''){
-    //         $('#point_1').innerText = '评论内容不能为空';
-    //         // $('#point_1').style.color = 'red';
-    //     }
-    // })
-    function firstPoint() {
-        // console.log($(this));
-        // console.log(this);
-        console.log($('#content').val());  // val是有jQuery插件时用的
+    function firstPoint(self) {
+        var id = self.id;
+        var val = $("input[id='" + id + "']").val();
+        console.log(val);  // val是有jQuery插件时用的
+        if (val === '') {
+            if (id === 'content') {
+                $('#point_1').text('评论内容不能为空');
+            }
+            // $('#point_1').text('评论内容不能为空');
+            else if (id === 'content_new') {
+                $('#point_3').text('回复内容不能为空');
+            }
+            // console.log($('#point_1').innerText);
+        } else {
+            if (id === 'content') {
+                $('#point_1').text('');
+            }
+            else if (id === 'content_new') {
+                $('#point_3').text('');
+            }
+        }
+    }
+
+    function secondPoint(self) {
+        var id = self.id;
+        var val = $("input[id='" + id + "']").val();
+        console.log(val === '');
+        // var re=/^\w+@[a-z0-9]+\.[a-z]{2,4}$/
+        var re = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
+        if (val === '') {
+            if (id === 'email') {
+                $('#point_2').text('请填入您的邮箱便于联系');
+            }
+            else if (id === 'email_new') {
+                $('#point_4').text('请填入您的邮箱便于联系');
+            }
+        }
+        else if (!re.test(val)) {
+            if (id === 'email') {
+                $('#point_2').text('邮箱格式不正确');
+            }
+            else if (id === 'email_new') {
+                $('#point_4').text('邮箱格式不正确');
+            }
+        } else {
+            if (id === 'email') {
+                $('#point_2').text('');
+            }
+            else if (id === 'email_new') {
+                $('#point_4').text('');
+            }
+        }
+    }
+
+    function postComment(self) {
+        console.log("触发了");
+        $("form:input").trigger("blur");
+        // console.log($('#point_2').text());
+        if ($('#point_2').text() === '' && $('#point_1').text() === '') {
+            $.ajax({
+                url: "/leaveWord",
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    content: $('#content').val(),
+                    email: $('#email').val(),
+                    articleId: '<%=thisArticle[0].id%>',
+                    // lastCmt:''
+                },
+                success: function (res) {
+                    console.log("成功");
+                    console.log(res);
+                    showComment();
+                },
+                error: function (res) {
+                    console.log("失败");
+                },
+                complete: function (res) {
+                    console.log("成功");
+                }
+            })
+        }
+    }
+
+    function showComment() {
+        $.ajax({
+            url: '/showComment',
+            type: 'GET',
+            dataType: 'json',
+            success: function (res) {
+                console.log("成功");
+                console.log(res);
+                console.log(res.commentList[0].lastCmt_email === null);
+                var context = {comment: res.commentList};
+                var html = template('model', context);
+                $('#all-comment').html(html);
+            },
+            error: function (res) {
+                console.log("失败");
+            },
+            complete: function (res) {
+                console.log("完成");
+            }
+        })
+    }
+
+    $(document).ready(function () {
+        showComment();
+    })
+
+    function showCommentBox(email) {
+        $('#commentModalLabel').text('回复' + email);
+
     }
 </script>
 </html>

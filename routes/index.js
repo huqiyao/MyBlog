@@ -22,7 +22,7 @@ router.post('/manageIndex',function (req,res) {
 /* POST comment */
 router.post('/leaveWord',function (req,res,next) {
 
-    console.log(req.body)
+    console.log(req.body);
     comment.addComment(req,res,next);
     // res.send(req.body);
 });
@@ -55,6 +55,12 @@ router.get('/toArticleDetail/:id',function (req,res) {
     article.getThisArticle(req,res,function (e) {
         console.log(e);
         res.render('article-detail',e);
+    })
+});
+
+router.get('/showComment',function (req,res) {
+    comment.queryAllComment(req,res,function (e) {
+        res.send(e);
     })
 });
 
