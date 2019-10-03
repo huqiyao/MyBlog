@@ -1,6 +1,6 @@
 var sqlCommand = {
-    insertCmt:'insert into comment (content,email,article_id,lastCmt_id) values (?,?,?,?)',
-    getAllCmt:'select * from comment',
+    insertCmt:'insert into comment (content,email,article_id,lastCmt_email) values (?,?,?,?)',
+    getAllCmt:'select * from comment where article_id = ?',
     insertAtc:'insert into article (title,tag,content,source_code) values (?,?,?,?)',
     selectAllAtc:'select * from article limit ? offset ?',
     // selectAllAtc:'SELECT SQL_CALC_FOUND_ROWS * from article limit ? offset ?',

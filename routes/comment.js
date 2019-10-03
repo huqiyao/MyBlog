@@ -27,8 +27,10 @@ function addComment(req, res, next) {
 }
 
 function queryAllComment(req, res, callback) {
+    var id = req.params.id;
+    console.log("id是："+id);
     var result = {};
-    db.query(sqlCommand.getAllCmt, function (err, rows) {
+    db.queryArgs(sqlCommand.getAllCmt,id, function (err, rows) {
         rows.forEach(item => {
             item.time = utils.formatTime(item.time);
         });

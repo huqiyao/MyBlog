@@ -58,7 +58,7 @@ router.get('/toArticleDetail/:id',function (req,res) {
     })
 });
 
-router.get('/showComment',function (req,res) {
+router.get('/showComment/:id',function (req,res) {
     comment.queryAllComment(req,res,function (e) {
         res.send(e);
     })
